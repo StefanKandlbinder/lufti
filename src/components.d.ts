@@ -31,6 +31,13 @@ export namespace Components {
 
   interface LuftiMain {}
   interface LuftiMainAttributes extends StencilHTMLAttributes {}
+
+  interface LuftiSearch {
+    'luftiID': number;
+  }
+  interface LuftiSearchAttributes extends StencilHTMLAttributes {
+    'luftiID'?: number;
+  }
 }
 
 declare global {
@@ -39,6 +46,7 @@ declare global {
     'AppProfile': Components.AppProfile;
     'AppRoot': Components.AppRoot;
     'LuftiMain': Components.LuftiMain;
+    'LuftiSearch': Components.LuftiSearch;
   }
 
   interface StencilIntrinsicElements {
@@ -46,6 +54,7 @@ declare global {
     'app-profile': Components.AppProfileAttributes;
     'app-root': Components.AppRootAttributes;
     'lufti-main': Components.LuftiMainAttributes;
+    'lufti-search': Components.LuftiSearchAttributes;
   }
 
 
@@ -73,11 +82,18 @@ declare global {
     new (): HTMLLuftiMainElement;
   };
 
+  interface HTMLLuftiSearchElement extends Components.LuftiSearch, HTMLStencilElement {}
+  var HTMLLuftiSearchElement: {
+    prototype: HTMLLuftiSearchElement;
+    new (): HTMLLuftiSearchElement;
+  };
+
   interface HTMLElementTagNameMap {
     'app-home': HTMLAppHomeElement
     'app-profile': HTMLAppProfileElement
     'app-root': HTMLAppRootElement
     'lufti-main': HTMLLuftiMainElement
+    'lufti-search': HTMLLuftiSearchElement
   }
 
   interface ElementTagNameMap {
@@ -85,6 +101,7 @@ declare global {
     'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
     'lufti-main': HTMLLuftiMainElement;
+    'lufti-search': HTMLLuftiSearchElement;
   }
 
 

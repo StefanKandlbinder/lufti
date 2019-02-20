@@ -22,7 +22,7 @@ export class AppRoot {
               <div class="lufti-air-component-value">02,00</div>
             </div>
           </div>
-          <input class="lufti-search" placeholder="put in your sensor id"/>
+          <lufti-search></lufti-search>
         </main>
       </div>
     );

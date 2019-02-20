@@ -1,0 +1,16 @@
+.lufti-search-input {
+    outline: 0;
+    box-shadow: 0;
+    border: 0;
+    color: var(--lufti-color-text);
+    background-color: var(--lufti-color-primary--darker);
+    padding: var(--lufti-margin--2) var(--lufti-margin--3);
+    border-radius: 30px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.lufti-search-input::placeholder {
+    color: var(--lufti-color-text--weaker);
+}
