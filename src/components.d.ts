@@ -32,11 +32,9 @@ export namespace Components {
   interface LuftiMain {}
   interface LuftiMainAttributes extends StencilHTMLAttributes {}
 
-  interface LuftiSearch {
-    'luftiID': number;
-  }
+  interface LuftiSearch {}
   interface LuftiSearchAttributes extends StencilHTMLAttributes {
-    'luftiID'?: number;
+    'onLuftiIDSelected'?: (event: CustomEvent<string>) => void;
   }
 }
 
