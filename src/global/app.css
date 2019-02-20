@@ -1,0 +1,35 @@
+/*
+  Global App CSS
+  ----------------------
+  Use this file for styles that should be applied to all components.
+  For example, "font-family" within the "body" selector is a CSS property
+  most apps will want applied to all components.
+
+  Any global CSS variables should also be applied here.
+*/
+
+/*
+ *  MAIN CUSTOM PROPERTIES
+ */
+
+ :root {
+  --lufti-color-primary: #4bb3fd;
+  --lufti-color-primary--weak: #6bc0fd;
+  --lufti-color-primary--dark: #3e93d0;
+  --lufti-color-primary--darker: #3072a2;
+  --lufti-color-text: rgba(255, 207, 50, 1);
+  --lufti-color-text--weak: rgba(255, 207, 50, 0.7);
+  --lufti-color-text--weaker: rgba(255, 207, 50, 0.5);
+
+  --lufti-margin--1: 4px;
+  --lufti-margin--2: calc(var(--lufti-margin--1) * 2);
+  --lufti-margin--3: calc(var(--lufti-margin--1) * 3);
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  color: var(--lufti-color-text);
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  background-color: var(--lufti-color-primary--dark);
+}
