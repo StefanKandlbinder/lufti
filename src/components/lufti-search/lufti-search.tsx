@@ -73,6 +73,7 @@ export class AppRoot {
 
         return (
             <form class={luftiSearchFormClass} onSubmit={this.onGetData.bind(this)}>
+                <div class="lufti-loading"></div>
                 <div class="lufti-search">
                     <input 
                         id="lufti-id"
@@ -86,7 +87,7 @@ export class AppRoot {
                 <button 
                     class="lufti-search-button" 
                     disabled={!this.sensorIDInputValid || this.loading}
-                    type="submit">Fetch</button>
+                    type="submit">GO!</button>
             </form>
         );
     }
