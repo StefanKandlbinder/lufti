@@ -1,16 +1,38 @@
+.lufti-search-form {
+    display: flex;
+    background-color: var(--lufti-color-primary--darker);
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+}
+
 .lufti-search-input {
     outline: 0;
     box-shadow: 0;
     border: 0;
     color: var(--lufti-color-text);
-    background-color: var(--lufti-color-primary--darker);
     padding: var(--lufti-margin--2) var(--lufti-margin--3);
-    border-radius: 30px;
     text-align: center;
     font-weight: bold;
     font-size: 16px;
+    background: transparent;
+    letter-spacing: 0.5px;
 }
 
 .lufti-search-input::placeholder {
     color: var(--lufti-color-text--weaker);
+    font-size: 12px;
+}
+
+.lufti-search-button {
+    position: absolute;
+    right: 0;
+    height: 34px;
+    outline: 0;
+    box-shadow: 0;
+    border: 0;
+    padding: 0 var(--lufti-margin--3);
+    color: var(--lufti-color-primary--darker);
+    background-color: var(--lufti-color-text);
+    letter-spacing: 0.5px;
 }

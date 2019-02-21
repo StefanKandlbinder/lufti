@@ -9,10 +9,10 @@ import { Component, State, EventEmitter, Event } from '@stencil/core';
 export class AppRoot {
     luftiInput: HTMLInputElement;
 
-    @State() searchResults: { symbol: string, name: string }[] = [];
+    @State() componentValues: [];
     @State() loading = false;
 
-    @Event({ bubbles: true, composed: true }) luftiIDSelected: EventEmitter<string>;
+    @Event({ bubbles: true, composed: true }) luftiIDSelected: EventEmitter<[]>;
 
     onGetData(event: Event) {
         event.preventDefault();
@@ -30,12 +30,17 @@ export class AppRoot {
             .then(parsedRes => {
                 /* if (!parsedRes['bestMatches']) {
                     throw new Error('Invalid Symbol');
-                }
+                }  */
 
-                this.searchResults = parsedRes['bestMatches'].map(match => {
+                /* this.componentValues = parsedRes['bestMatches'].map(match => {
                     return { name: match['2. name'], symbol: match['1. symbol'] }
                 }); */
-                console.log(parsedRes);
+
+                this.componentValues = parsedRes[1].sensordatavalues
+
+                this.luftiIDSelected.emit(this.componentValues);
+
+                // console.log(this.componentValues[0].value);
 
                 this.loading = false;
                 // this.error = '';
@@ -47,13 +52,9 @@ export class AppRoot {
             });
     }
 
-    onSelectSymbol(symbol: string) {
-        this.luftiIDSelected.emit(symbol);
-    }
-
     render() {
         return (
-            <form onSubmit={this.onGetData.bind(this)}>
+            <form class="lufti-search-form" onSubmit={this.onGetData.bind(this)}>
                 <div class="lufti-search">
                     <input 
                         id="lufti-id"
@@ -62,8 +63,7 @@ export class AppRoot {
                         ref={el => this.luftiInput = el}
                         placeholder="your sensor id" />
                 </div>
-                <button
-                    type="submit">Fetch</button>
+                <button class="lufti-search-button" type="submit">Fetch</button>
             </form>
         );
     }
