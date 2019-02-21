@@ -10,9 +10,22 @@ export class AppRoot {
     luftiInput: HTMLInputElement;
 
     @State() componentValues: [];
+    @State() sensorIDInput: string;
+    @State() sensorIDInputValid = false;
     @State() loading = false;
 
     @Event({ bubbles: true, composed: true }) luftiIDSelected: EventEmitter<[]>;
+
+    onUserInput(event: Event) {
+        this.sensorIDInput = (event.target as HTMLInputElement).value;
+
+        if (this.sensorIDInput.trim().length > 0) {
+            this.sensorIDInputValid = true;
+        }
+        else {
+            this.sensorIDInputValid = false;
+        }
+    }
 
     onGetData(event: Event) {
         event.preventDefault();
@@ -53,17 +66,27 @@ export class AppRoot {
     }
 
     render() {
+        let luftiSearchFormClass = "lufti-search-form";
+        if (this.sensorIDInputValid) {
+            luftiSearchFormClass += " lufti-search-form--raised";
+        }
+
         return (
-            <form class="lufti-search-form" onSubmit={this.onGetData.bind(this)}>
+            <form class={luftiSearchFormClass} onSubmit={this.onGetData.bind(this)}>
                 <div class="lufti-search">
                     <input 
                         id="lufti-id"
+                        type="number"
                         class="lufti-search-input"
                         autoComplete="off"
                         ref={el => this.luftiInput = el}
+                        onInput={this.onUserInput.bind(this)}
                         placeholder="your sensor id" />
                 </div>
-                <button class="lufti-search-button" type="submit">Fetch</button>
+                <button 
+                    class="lufti-search-button" 
+                    disabled={!this.sensorIDInputValid || this.loading}
+                    type="submit">Fetch</button>
             </form>
         );
     }
