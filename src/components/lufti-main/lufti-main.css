@@ -44,10 +44,15 @@
     height: 100%;
     background: transparent;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .lufti-air-component-value {
     font-size: 48px;
+}
+
+.lufti-air-component-value--pm25 {
+    font-size: 16px;
 }
