@@ -1,6 +1,6 @@
 # Lufti
 
-... is a simple PWA built with [StencilJS](https://stenciljs.com/) to fetch air pollution data for a specif sensor from [Luftdaten API](https://github.com/opendata-stuttgart/meta/wiki/APIs).
+... is a simple PWA built with [StencilJS](https://stenciljs.com/) to fetch air pollution data of a specific sensor from [Luftdaten Info](https://luftdaten.info/).
 
 ## Getting Started
 
