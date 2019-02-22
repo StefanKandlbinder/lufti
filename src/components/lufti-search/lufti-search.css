@@ -24,6 +24,7 @@
     box-shadow: 0;
     border: 0;
     color: var(--lufti-color-text);
+    caret-color: var(--lufti-color-text);
     padding: var(--lufti-margin--2) var(--lufti-margin--3);
     text-align: center;
     font-weight: bold;
