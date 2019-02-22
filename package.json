@@ -5,7 +5,8 @@
   "description": "Stencil App Starter",
   "scripts": {
     "build": "stencil build",
-    "start": "stencil build --dev --watch --serve",
+    "startLocal": "stencil build --dev --watch --serve",
+    "start": "serve www",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
