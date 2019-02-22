@@ -19,7 +19,7 @@
 .lufti-search-input {
     box-sizing: border-box;
     height: 40px;
-    max-width: 130px;
+    max-width: 150px;
     outline: 0;
     box-shadow: 0;
     border: 0;
@@ -35,7 +35,6 @@
 
 .lufti-search-input::placeholder {
     color: var(--lufti-color-text--weaker);
-    font-size: 12px;
 }
 
 .lufti-search-button {
