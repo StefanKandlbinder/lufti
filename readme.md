@@ -1,9 +1,9 @@
 # Lufti
 
-... is a simple PWA to fetch data from [Luftdaten API](https://github.com/opendata-stuttgart/meta/wiki/APIs).
+... is a simple PWA built with [StencilJS](https://stenciljs.com/) to fetch air pollution data for a specif sensor from [Luftdaten API](https://github.com/opendata-stuttgart/meta/wiki/APIs).
 
 ## Getting Started
 
-The app is hosted by Netlify and can be reached under this link: [https://sleepy-raman-4d9d6e.netlify.com/](https://sleepy-raman-4d9d6e.netlify.com/).
+The app is hosted free by Netlify and can be reached under this link: [https://sleepy-raman-4d9d6e.netlify.com/](https://sleepy-raman-4d9d6e.netlify.com/).
 
 Just put in your Sensor ID and you will get the latest data from the server.
