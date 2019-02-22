@@ -1,0 +1,7 @@
+{
+  "root": "www/",
+  "routes": {
+    "/**": "index.html"
+  },
+  "https_only": true
+}
