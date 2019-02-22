@@ -34,7 +34,7 @@ export namespace Components {
 
   interface LuftiSearch {}
   interface LuftiSearchAttributes extends StencilHTMLAttributes {
-    'onLuftiIDSelected'?: (event: CustomEvent<[]>) => void;
+    'onLuftiIDSelected'?: (event: CustomEvent<{}>) => void;
   }
 }
 

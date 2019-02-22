@@ -9,12 +9,11 @@ import { Component, State, EventEmitter, Event } from '@stencil/core';
 export class AppRoot {
     luftiInput: HTMLInputElement;
 
-    @State() componentValues: [];
     @State() sensorIDInput: string;
     @State() sensorIDInputValid = false;
     @State() loading = false;
 
-    @Event({ bubbles: true, composed: true }) luftiIDSelected: EventEmitter<[]>;
+    @Event({ bubbles: true, composed: true }) luftiIDSelected: EventEmitter<{}>;
 
     onUserInput(event: Event) {
         this.sensorIDInput = (event.target as HTMLInputElement).value;
@@ -49,9 +48,7 @@ export class AppRoot {
                     return { name: match['2. name'], symbol: match['1. symbol'] }
                 }); */
 
-                this.componentValues = parsedRes[1].sensordatavalues
-
-                this.luftiIDSelected.emit(this.componentValues);
+                this.luftiIDSelected.emit({"pm10": parsedRes[1].sensordatavalues[0].value, "pm25": parsedRes[1].sensordatavalues[1].value, "timestamp": parsedRes[1].timestamp});
 
                 // console.log(this.componentValues[0].value);
 

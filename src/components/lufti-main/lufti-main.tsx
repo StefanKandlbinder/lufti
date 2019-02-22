@@ -7,7 +7,7 @@ import { Component, Listen, State } from '@stencil/core';
   shadow: true
 })
 export class AppRoot {
-  @State() componentValues: [{value: "0.00"}, {value:"0.00"}];
+  @State() componentValues: any;
 
   @Listen('body:luftiIDSelected')
   onStockSymbolSelected(componentValues) {
@@ -19,7 +19,7 @@ export class AppRoot {
   componentDidLoad() {
     console.log('componentDidLoad');
 
-    this.componentValues = [{value: "0.00"}, {value:"0.00"}];
+    // this.componentValues = [{value: "0.00"}, {value:"0.00"}, {timestamp:""}];
   }
 
   render() {
@@ -27,8 +27,8 @@ export class AppRoot {
     let pm25 = "0.00";
 
     if (this.componentValues) {
-      pm10 = this.componentValues[0].value;
-      pm25 = this.componentValues[1].value;
+      pm10 = this.componentValues.pm10;
+      pm25 = this.componentValues.pm25;
     }
 
     return (
