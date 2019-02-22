@@ -8,8 +8,4 @@ The app is hosted free by Netlify and can be reached under this link: [https://s
 
 Just put in your Sensor ID and you will get the latest data from the server.
 
-<video src="https://github.com/StefanKandlbinder/lufti/raw/master/src/assets/mov/Lufti.mp4" autoplay">
-  Sorry, your browser doesn't support embedded videos, 
-  but don't worry, you can <a href="https://github.com/StefanKandlbinder/lufti/raw/master/src/assets/mov/Lufti.mp4">download it</a>
-  and watch it with your favorite video player!
-</video>
+[lufti](https://github.com/StefanKandlbinder/lufti/raw/master/src/assets/gif/Lufti.gif)
