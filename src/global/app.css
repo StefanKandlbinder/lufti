@@ -26,7 +26,12 @@
   --lufti-margin--3: calc(var(--lufti-margin--1) * 3);
 }
 
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   margin: 0px;
   padding: 0px;
   color: var(--lufti-color-text);
