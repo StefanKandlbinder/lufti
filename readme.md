@@ -8,4 +8,4 @@ The app is hosted free by Netlify and can be reached under this link: [https://s
 
 Just put in your Sensor ID and you will get the latest data from the server.
 
-[lufti](https://github.com/StefanKandlbinder/lufti/raw/master/src/assets/gif/Lufti.gif)
+![lufti](https://github.com/StefanKandlbinder/lufti/raw/master/src/assets/gif/Lufti.gif)
