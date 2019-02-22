@@ -24,6 +24,11 @@
   --lufti-margin--1: 4px;
   --lufti-margin--2: calc(var(--lufti-margin--1) * 2);
   --lufti-margin--3: calc(var(--lufti-margin--1) * 3);
+  --lufti-margin--4: calc(var(--lufti-margin--1) * 4);
+  --lufti-margin--5: calc(var(--lufti-margin--1) * 5);
+  --lufti-margin--6: calc(var(--lufti-margin--1) * 6);
+  --lufti-margin--7: calc(var(--lufti-margin--1) * 7);
+  --lufti-margin--8: calc(var(--lufti-margin--1) * 8);
 }
 
 html {

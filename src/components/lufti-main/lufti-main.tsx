@@ -39,7 +39,6 @@ export class AppRoot {
 
         <main class="lufti-main">
           <div class="lufti-air-component">
-            <svg class="lufti-air-component-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="airSVGLuftdatenMarker"><path d="M21.5 17.5v-11L12 1 2.5 6.5v11L12 23z"></path></svg>
             <div class="lufti-air-component-value-container">
               <div class="lufti-air-component-value lufti-air-component-value--pm10">{pm10}</div>
               <div class="lufti-air-component-value lufti-air-component-value--pm25">{pm25}</div>

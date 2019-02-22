@@ -36,6 +36,7 @@
 .lufti-air-component {
     width: 90vw;
     position: relative;
+    flex-grow: 1;
 }
 
 .lufti-air-component-svg {
