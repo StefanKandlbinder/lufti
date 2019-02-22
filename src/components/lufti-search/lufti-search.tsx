@@ -33,7 +33,7 @@ export class AppRoot {
 
         this.loading = true;
 
-        fetch(`http://api.luftdaten.info/v1/sensor/${luftiID}/`)
+        fetch(`https://api.luftdaten.info/v1/sensor/${luftiID}/`)
             .then(res => {
                 if (res.status !== 200) {
                     throw new Error('Invalid!');
