@@ -37,6 +37,12 @@
     width: 90vw;
     position: relative;
     flex-grow: 1;
+    opacity: 1;
+    transition: opacity 200ms ease-out;
+}
+
+.lufti-container--initial .lufti-air-component {
+  opacity: 0;
 }
 
 .lufti-air-component-svg {
@@ -65,4 +71,8 @@
 
 .lufti-air-component-value--pm25 {
     font-size: 16px;
+}
+
+.lufti-container--initial lufti-search {
+  transform: translateY(-200px);
 }

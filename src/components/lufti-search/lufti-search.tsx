@@ -14,6 +14,7 @@ export class AppRoot {
   @State() loading = false;
 
   @Event({ bubbles: true, composed: true }) luftiIDSelected: EventEmitter<{}>;
+  @Event({ bubbles: true, composed: true }) luftiID: EventEmitter<string>;
 
   componentDidLoad() {
     console.log("componentDidLoad [lufti-search]");
@@ -21,12 +22,20 @@ export class AppRoot {
     const persistedState = loadState();
 
     if (persistedState !== undefined) {
-      console.log(persistedState);
-
       this.sensorIDInputValid = true;
-      this.luftiInput.value = persistedState.stationID
+      this.luftiInput.value = persistedState.stationID;
+      this.luftiID.emit(persistedState.stationID);
+
       this.fetchData();
     }
+    else {
+      this.luftiID.emit(persistedState.stationID);
+    }
+  }
+
+  componentWillUpdate() {
+    const persistedState = loadState();
+    this.luftiID.emit(persistedState.stationID);
   }
 
   onUserInput(event: Event) {
