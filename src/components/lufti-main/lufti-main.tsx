@@ -17,9 +17,12 @@ export class AppRoot {
   }
 
   componentDidLoad() {
-    console.log('componentDidLoad');
-
+    console.log('componentDidLoad [lufti-main]');
     // this.componentValues = [{value: "0.00"}, {value:"0.00"}, {timestamp:""}];
+  }
+
+  componentDidUpdate() {
+    console.log('componentDidUpdate [lufti-main]');
   }
 
   render() {
