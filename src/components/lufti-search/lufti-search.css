@@ -1,7 +1,7 @@
 :host {
   transition: transform 200ms ease-out;
   will-change: transform;
-  transform: translateY(0);
+  transform: translateY(-40px);
 }
 
 .lufti-search-form {
@@ -14,7 +14,6 @@
     box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.3);
     transform: scale(0.97);
     transition: box-shadow 300ms ease-out, transform 300ms ease-out;
-    margin-bottom: var(--lufti-margin--10);
 }
 
 .lufti-search-form--raised {

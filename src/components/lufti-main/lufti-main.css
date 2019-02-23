@@ -74,5 +74,5 @@
 }
 
 .lufti-container--initial lufti-search {
-  transform: translateY(-200px);
+  transform: translateY(calc(-50vh + 20px));
 }
