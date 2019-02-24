@@ -28,14 +28,16 @@ export class AppRoot {
 
       this.fetchData();
     }
-    else {
-      this.luftiID.emit(persistedState.stationID);
-    }
   }
 
   componentWillUpdate() {
+    console.log("componentWillUpdate [lufti-search]");
+
     const persistedState = loadState();
-    this.luftiID.emit(persistedState.stationID);
+
+    if (persistedState !== undefined) {
+      this.luftiID.emit(persistedState.stationID);
+    }
   }
 
   onUserInput(event: Event) {
@@ -83,6 +85,8 @@ export class AppRoot {
   }
 
   render() {
+    console.log(loadState());
+
     let luftiSearchFormClass = "lufti-search-form";
 
     if (this.sensorIDInputValid) {
@@ -97,6 +101,7 @@ export class AppRoot {
         <div class="lufti-search-button-spacer"></div>
         <div class="lufti-search">
           <input
+            aria-label="Sensor ID Input"
             id="lufti-id"
             type="number"
             step="1"
