@@ -30,8 +30,6 @@ export class LuftiMain {
     if (this.isLoading !== null) {
       this.isLoading = isLoading.detail;
     }
-
-    console.log(this.isLoading);
   }
 
   componentDidLoad() {
