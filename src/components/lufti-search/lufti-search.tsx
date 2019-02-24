@@ -63,7 +63,9 @@ export class AppRoot {
         return res.json();
       })
       .then(parsedRes => {
-        this.luftiIDSelected.emit({ "pm10": parsedRes[1].sensordatavalues[0].value, "pm25": parsedRes[1].sensordatavalues[1].value, "timestamp": parsedRes[1].timestamp });
+        this.luftiIDSelected.emit({ "pm10": parsedRes[parsedRes.length - 1].sensordatavalues[0].value,
+          "pm25": parsedRes[parsedRes.length - 1].sensordatavalues[1].value,
+          "timestamp": parsedRes[1].timestamp });
         this.loading = false;
         // this.error = '';
       })
