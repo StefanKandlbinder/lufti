@@ -47,7 +47,8 @@
     transition: opacity 200ms ease-out;
 }
 
-.lufti-container--initial .lufti-air-component {
+.lufti-container--initial .lufti-air-component,
+.lufti-air-component.s-loading {
   opacity: 0;
 }
 
