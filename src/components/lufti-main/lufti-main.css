@@ -23,6 +23,12 @@
 .lufti-header-logo {
   margin-left: var(--lufti-margin--2);
   fill: var(--lufti-color-text);
+  width: 24px;
+}
+
+.lufti-header-logo path {
+  stroke-width: 2px;
+  stroke: var(--lufti-color-text);
 }
 
 .lufti-main {

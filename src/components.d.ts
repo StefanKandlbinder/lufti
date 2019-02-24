@@ -29,11 +29,15 @@ export namespace Components {
   interface AppRoot {}
   interface AppRootAttributes extends StencilHTMLAttributes {}
 
+  interface LuftiLoading {}
+  interface LuftiLoadingAttributes extends StencilHTMLAttributes {}
+
   interface LuftiMain {}
   interface LuftiMainAttributes extends StencilHTMLAttributes {}
 
   interface LuftiSearch {}
   interface LuftiSearchAttributes extends StencilHTMLAttributes {
+    'onIsLoading'?: (event: CustomEvent<boolean>) => void;
     'onLuftiID'?: (event: CustomEvent<string>) => void;
     'onLuftiIDSelected'?: (event: CustomEvent<{}>) => void;
   }
@@ -44,6 +48,7 @@ declare global {
     'AppHome': Components.AppHome;
     'AppProfile': Components.AppProfile;
     'AppRoot': Components.AppRoot;
+    'LuftiLoading': Components.LuftiLoading;
     'LuftiMain': Components.LuftiMain;
     'LuftiSearch': Components.LuftiSearch;
   }
@@ -52,6 +57,7 @@ declare global {
     'app-home': Components.AppHomeAttributes;
     'app-profile': Components.AppProfileAttributes;
     'app-root': Components.AppRootAttributes;
+    'lufti-loading': Components.LuftiLoadingAttributes;
     'lufti-main': Components.LuftiMainAttributes;
     'lufti-search': Components.LuftiSearchAttributes;
   }
@@ -75,6 +81,12 @@ declare global {
     new (): HTMLAppRootElement;
   };
 
+  interface HTMLLuftiLoadingElement extends Components.LuftiLoading, HTMLStencilElement {}
+  var HTMLLuftiLoadingElement: {
+    prototype: HTMLLuftiLoadingElement;
+    new (): HTMLLuftiLoadingElement;
+  };
+
   interface HTMLLuftiMainElement extends Components.LuftiMain, HTMLStencilElement {}
   var HTMLLuftiMainElement: {
     prototype: HTMLLuftiMainElement;
@@ -91,6 +103,7 @@ declare global {
     'app-home': HTMLAppHomeElement
     'app-profile': HTMLAppProfileElement
     'app-root': HTMLAppRootElement
+    'lufti-loading': HTMLLuftiLoadingElement
     'lufti-main': HTMLLuftiMainElement
     'lufti-search': HTMLLuftiSearchElement
   }
@@ -99,6 +112,7 @@ declare global {
     'app-home': HTMLAppHomeElement;
     'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
+    'lufti-loading': HTMLLuftiLoadingElement;
     'lufti-main': HTMLLuftiMainElement;
     'lufti-search': HTMLLuftiSearchElement;
   }

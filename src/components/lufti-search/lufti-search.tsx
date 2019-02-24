@@ -6,7 +6,7 @@ import { saveState, loadState } from '../../store/localStorage';
   styleUrl: 'lufti-search.css',
   shadow: true
 })
-export class AppRoot {
+export class LuftiSearch {
   luftiInput: HTMLInputElement;
 
   @State() sensorIDInput: string;
@@ -15,6 +15,7 @@ export class AppRoot {
 
   @Event({ bubbles: true, composed: true }) luftiIDSelected: EventEmitter<{}>;
   @Event({ bubbles: true, composed: true }) luftiID: EventEmitter<string>;
+  @Event({ bubbles: true, composed: true }) isLoading: EventEmitter<boolean>;
 
   componentDidLoad() {
     console.log("componentDidLoad [lufti-search]");
@@ -54,6 +55,7 @@ export class AppRoot {
   fetchData() {
     this.sensorIDInput = this.luftiInput.value;
     this.loading = true;
+    this.isLoading.emit(true);
 
     fetch(`https://api.luftdaten.info/v1/sensor/${this.sensorIDInput}/`)
       .then(res => {
@@ -67,10 +69,12 @@ export class AppRoot {
           "pm25": parsedRes[parsedRes.length - 1].sensordatavalues[1].value,
           "timestamp": parsedRes[1].timestamp });
         this.loading = false;
+        this.isLoading.emit(false);
         // this.error = '';
       })
       .catch(err => {
         this.loading = false;
+        this.isLoading.emit(true);
         // this.error = err.message;
         console.log(err);
       });
@@ -87,8 +91,6 @@ export class AppRoot {
   }
 
   render() {
-    console.log(loadState());
-
     let luftiSearchFormClass = "lufti-search-form";
 
     if (this.sensorIDInputValid) {
