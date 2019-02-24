@@ -32,14 +32,13 @@ export class LuftiMain {
     }
   }
 
-  componentDidLoad() {
+  /* componentDidLoad() {
     console.log('componentDidLoad [lufti-main]');
-    // this.componentValues = [{value: "0.00"}, {value:"0.00"}, {timestamp:""}];
   }
 
   componentDidUpdate() {
     console.log('componentDidUpdate [lufti-main]');
-  }
+  } */
 
   render() {
     let pm10 = "0.00";

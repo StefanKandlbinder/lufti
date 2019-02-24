@@ -7,15 +7,6 @@ import { Component } from '@stencil/core';
   shadow: false
 })
 export class LuftiLoading {
-
-  componentDidLoad() {
-    console.log('componentDidLoad [lufti-main]');
-  }
-
-  componentDidUpdate() {
-    console.log('componentDidUpdate [lufti-main]');
-  }
-
   render() {
     return (
       <svg class="lufti-loading-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

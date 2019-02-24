@@ -18,7 +18,7 @@ export class LuftiSearch {
   @Event({ bubbles: true, composed: true }) isLoading: EventEmitter<boolean>;
 
   componentDidLoad() {
-    console.log("componentDidLoad [lufti-search]");
+    // console.log("componentDidLoad [lufti-search]");
 
     const persistedState = loadState();
 
@@ -32,7 +32,7 @@ export class LuftiSearch {
   }
 
   componentWillUpdate() {
-    console.log("componentWillUpdate [lufti-search]");
+    // console.log("componentWillUpdate [lufti-search]");
 
     const persistedState = loadState();
 
