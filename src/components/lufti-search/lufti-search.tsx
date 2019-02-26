@@ -56,17 +56,19 @@ export class LuftiSearch {
     this.sensorIDInput = this.luftiInput.value;
     this.loading = true;
     this.isLoading.emit(true);
+    
+    let errorMessage = "Sry, no data here!";
 
     fetch(`https://api.luftdaten.info/v1/sensor/${this.sensorIDInput}/`)
       .then(res => {
         if (res.status !== 200) {
-          this.luftiIDSelected.emit({ "pm10": "-",
-            "pm25": "-",
-            "timestamp": "-"});
+          this.luftiIDSelected.emit({ "pm10": "¯\_(ツ)_/¯",
+            "pm25": errorMessage,
+            "timestamp": ""});
 
           this.loading = false;
           this.isLoading.emit(false);
-          
+
           throw new Error('Invalid!');
         }
         return res.json();
@@ -81,9 +83,9 @@ export class LuftiSearch {
         // this.error = '';
       })
       .catch(err => {
-        this.luftiIDSelected.emit({ "pm10": "-",
-          "pm25": "-",
-          "timestamp": "-"});
+        this.luftiIDSelected.emit({ "pm10": `¯\\_(ツ)_/¯`,
+          "pm25": errorMessage,
+           "timestamp": ""});
 
         this.loading = false;
         this.isLoading.emit(false);
