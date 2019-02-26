@@ -60,6 +60,13 @@ export class LuftiSearch {
     fetch(`https://api.luftdaten.info/v1/sensor/${this.sensorIDInput}/`)
       .then(res => {
         if (res.status !== 200) {
+          this.luftiIDSelected.emit({ "pm10": "-",
+            "pm25": "-",
+            "timestamp": "-"});
+
+          this.loading = false;
+          this.isLoading.emit(false);
+          
           throw new Error('Invalid!');
         }
         return res.json();
@@ -68,13 +75,18 @@ export class LuftiSearch {
         this.luftiIDSelected.emit({ "pm10": parsedRes[parsedRes.length - 1].sensordatavalues[0].value,
           "pm25": parsedRes[parsedRes.length - 1].sensordatavalues[1].value,
           "timestamp": parsedRes[parsedRes.length - 1].timestamp });
+
         this.loading = false;
         this.isLoading.emit(false);
         // this.error = '';
       })
       .catch(err => {
+        this.luftiIDSelected.emit({ "pm10": "-",
+          "pm25": "-",
+          "timestamp": "-"});
+
         this.loading = false;
-        this.isLoading.emit(true);
+        this.isLoading.emit(false);
         // this.error = err.message;
         console.log(err);
       });
