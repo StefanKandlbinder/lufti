@@ -72,12 +72,12 @@
 }
 
 .lufti-air-component-value {
-    font-size: 48px;
+    font-size: 56px;
     text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .lufti-air-component-value--pm25 {
-    font-size: 12px;
+    font-size: 16px;
 }
 
 .lufti-container--initial lufti-search {
