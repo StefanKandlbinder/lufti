@@ -9,25 +9,9 @@ import '@stencil/core';
 
 import '@stencil/router';
 import '@stencil/state-tunnel';
-import {
-  MatchResults,
-} from '@stencil/router';
 
 
 export namespace Components {
-
-  interface AppHome {}
-  interface AppHomeAttributes extends StencilHTMLAttributes {}
-
-  interface AppProfile {
-    'match': MatchResults;
-  }
-  interface AppProfileAttributes extends StencilHTMLAttributes {
-    'match'?: MatchResults;
-  }
-
-  interface AppRoot {}
-  interface AppRootAttributes extends StencilHTMLAttributes {}
 
   interface LuftiLoading {}
   interface LuftiLoadingAttributes extends StencilHTMLAttributes {}
@@ -45,41 +29,17 @@ export namespace Components {
 
 declare global {
   interface StencilElementInterfaces {
-    'AppHome': Components.AppHome;
-    'AppProfile': Components.AppProfile;
-    'AppRoot': Components.AppRoot;
     'LuftiLoading': Components.LuftiLoading;
     'LuftiMain': Components.LuftiMain;
     'LuftiSearch': Components.LuftiSearch;
   }
 
   interface StencilIntrinsicElements {
-    'app-home': Components.AppHomeAttributes;
-    'app-profile': Components.AppProfileAttributes;
-    'app-root': Components.AppRootAttributes;
     'lufti-loading': Components.LuftiLoadingAttributes;
     'lufti-main': Components.LuftiMainAttributes;
     'lufti-search': Components.LuftiSearchAttributes;
   }
 
-
-  interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {}
-  var HTMLAppHomeElement: {
-    prototype: HTMLAppHomeElement;
-    new (): HTMLAppHomeElement;
-  };
-
-  interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {}
-  var HTMLAppProfileElement: {
-    prototype: HTMLAppProfileElement;
-    new (): HTMLAppProfileElement;
-  };
-
-  interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {}
-  var HTMLAppRootElement: {
-    prototype: HTMLAppRootElement;
-    new (): HTMLAppRootElement;
-  };
 
   interface HTMLLuftiLoadingElement extends Components.LuftiLoading, HTMLStencilElement {}
   var HTMLLuftiLoadingElement: {
@@ -100,18 +60,12 @@ declare global {
   };
 
   interface HTMLElementTagNameMap {
-    'app-home': HTMLAppHomeElement
-    'app-profile': HTMLAppProfileElement
-    'app-root': HTMLAppRootElement
     'lufti-loading': HTMLLuftiLoadingElement
     'lufti-main': HTMLLuftiMainElement
     'lufti-search': HTMLLuftiSearchElement
   }
 
   interface ElementTagNameMap {
-    'app-home': HTMLAppHomeElement;
-    'app-profile': HTMLAppProfileElement;
-    'app-root': HTMLAppRootElement;
     'lufti-loading': HTMLLuftiLoadingElement;
     'lufti-main': HTMLLuftiMainElement;
     'lufti-search': HTMLLuftiSearchElement;
