@@ -62,7 +62,7 @@ export class LuftiSearch {
     fetch(`https://api.luftdaten.info/v1/sensor/${this.sensorIDInput}/`)
       .then(res => {
         if (res.status !== 200) {
-          this.luftiIDSelected.emit({ "pm10": "¯\_(ツ)_/¯",
+          this.luftiIDSelected.emit({ "pm10": "¯\\_(ツ)_/¯",
             "pm25": errorMessage,
             "timestamp": ""});
 
