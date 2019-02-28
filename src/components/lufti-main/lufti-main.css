@@ -83,3 +83,8 @@
 .lufti-container--initial lufti-search {
   transform: translateY(calc(-50vh + 20px));
 }
+
+.lufti-timestamp {
+  font-size: 10px;
+  margin-bottom: var(--lufti-margin--2);
+}

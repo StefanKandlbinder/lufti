@@ -43,10 +43,12 @@ export class LuftiMain {
   render() {
     let pm10 = "0.00";
     let pm25 = "0.00";
+    let timestamp = "";
 
     if (this.componentValues) {
       pm10 = this.componentValues.pm10;
       pm25 = this.componentValues.pm25;
+      timestamp = this.componentValues.timestamp;
     }
 
     let luftiContainerClass = "lufti-container";
@@ -73,6 +75,7 @@ export class LuftiMain {
             </div>
           </div>
           <lufti-search></lufti-search>
+          <div class="lufti-timestamp">{timestamp}</div>
           <lufti-loading class={this.isLoading ? "s-loading" : ""}></lufti-loading>
         </main>
       </div>
