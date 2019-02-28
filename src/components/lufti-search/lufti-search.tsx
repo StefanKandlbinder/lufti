@@ -1,6 +1,8 @@
 import { Component, State, EventEmitter, Event } from '@stencil/core';
 import { saveState, loadState } from '../../store/localStorage';
 
+import getStringDateLuftdaten from '../../utilities/getStringDateLuftdaten';
+
 @Component({
   tag: 'lufti-search',
   styleUrl: 'lufti-search.css',
@@ -95,7 +97,7 @@ export class LuftiSearch {
       .then(parsedRes => {
         this.luftiIDSelected.emit({ "pm10": parsedRes[parsedRes.length - 1].sensordatavalues[0].value,
           "pm25": parsedRes[parsedRes.length - 1].sensordatavalues[1].value,
-          "timestamp": parsedRes[parsedRes.length - 1].timestamp });
+          "timestamp": getStringDateLuftdaten(parsedRes[parsedRes.length - 1].timestamp) });
 
         this.loading = false;
         this.isLoading.emit(false);
