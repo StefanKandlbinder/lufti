@@ -28,7 +28,13 @@ export class LuftiSearch {
       this.luftiID.emit(persistedState.stationID);
 
       this.fetchData();
+
+      document.addEventListener("visibilitychange", this.handleVisibilityChange, false);
     }
+  }
+
+  componentDidUnload() {
+    document.removeEventListener("visibilitychange", this.handleVisibilityChange);
   }
 
   componentWillUpdate() {
@@ -41,6 +47,18 @@ export class LuftiSearch {
     }
   }
 
+  /**
+   * Fetch new data when the tan gets active again
+   */
+  handleVisibilityChange() {
+    if (document.hidden) {
+      // pauseSimulation();
+    } 
+    else  {
+      this.fetchData();
+    }
+  }
+  
   onUserInput(event: Event) {
     this.sensorIDInput = (event.target as HTMLInputElement).value;
 
