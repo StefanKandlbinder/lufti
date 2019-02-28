@@ -29,7 +29,7 @@ export class LuftiSearch {
 
       this.fetchData();
 
-      document.addEventListener("visibilitychange", this.handleVisibilityChange, false);
+      document.addEventListener("visibilitychange", this.handleVisibilityChange.bind(this), false);
     }
   }
 
@@ -99,7 +99,6 @@ export class LuftiSearch {
 
         this.loading = false;
         this.isLoading.emit(false);
-        // this.error = '';
       })
       .catch(err => {
         this.luftiIDSelected.emit({ "pm10": errorEmoji,
@@ -108,7 +107,6 @@ export class LuftiSearch {
 
         this.loading = false;
         this.isLoading.emit(false);
-        // this.error = err.message;
         console.log(err);
       });
   }
