@@ -83,8 +83,10 @@ export class LuftiMain {
               <div class="lufti-air-component-value lufti-air-component-value--pm25">{pm25 !== "0" ? pm25 : errorMessage}</div>
             </div>
           </div>
-          <lufti-search></lufti-search>
-          <div class={this.isLoading ? "lufti-timestamp s-loading" : "lufti-timestamp"}>{timestamp}</div>
+          <div class="lufti-search-container">
+            <lufti-search></lufti-search>
+            <div class={this.isLoading ? "lufti-timestamp s-loading" : "lufti-timestamp"}>{timestamp}</div>
+          </div>
           <lufti-loading class={this.isLoading ? "s-loading" : ""}></lufti-loading>
         </main>
       </div>

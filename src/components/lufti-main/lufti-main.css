@@ -85,20 +85,44 @@
     font-size: 16px;
 }
 
-.lufti-container--initial lufti-search {
+.lufti-search-container {
+  transition: transform 200ms ease-out;
+  will-change: transform;
+  transform: translateY(-40px);
+  position: relative;
+}
+
+.lufti-container--initial .lufti-search-container {
   transform: translateY(calc(-50vh + 20px));
 }
 
 .lufti-timestamp {
   font-size: 11px;
   font-weight: 300;
-  position: fixed;
   bottom: var(--lufti-margin--2);
   opacity: 1;
   transition: opacity var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
+  position: absolute;
+  bottom: -24px;
+  width: 100%;
+  text-align: center;
+}
+
+.lufti-location {
+  font-size: 11px;
+  font-weight: 300;
+  bottom: var(--lufti-margin--2);
+  opacity: 1;
+  transition: opacity var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
+  position: absolute;
+  bottom: -24px;
+  width: 100%;
+  text-align: center;
 }
 
 .lufti-container--initial .lufti-timestamp,
-.lufti-timestamp.s-loading {
+.lufti-timestamp.s-loading,
+.lufti-container--initial .lufti-location,
+.lufti-location.s-loading {
   opacity: 0;
 }
