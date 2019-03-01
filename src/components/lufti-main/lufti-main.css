@@ -7,17 +7,20 @@
 
 .lufti-header__title {
     margin: 0;
-    background-color: var(--lufti-color-primary--darker);
+    background-color: var(--lufti-color-primary--weaker);
     color: var(--lufti-color-text);;
     line-height: 1;
     padding: var(--lufti-margin--3) var(--lufti-margin--2);
     font-size: 16px;
+    font-weight: 400;
     text-align: center;
     letter-spacing: 2px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
+    will-change: background-color;
 }
 
 .lufti-header-logo {
@@ -27,7 +30,7 @@
 }
 
 .lufti-header-logo path {
-  stroke-width: 2px;
+  stroke-width: 1.5px;
   stroke: var(--lufti-color-text);
 }
 
@@ -44,7 +47,9 @@
     position: relative;
     flex-grow: 1;
     opacity: 1;
-    transition: opacity 200ms ease-out;
+    transition: opacity var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
+    will-change: opacity;
+    font-weight: 300;
 }
 
 .lufti-container--initial .lufti-air-component,
@@ -85,7 +90,15 @@
 }
 
 .lufti-timestamp {
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 300;
   position: fixed;
   bottom: var(--lufti-margin--2);
+  opacity: 1;
+  transition: opacity var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
+}
+
+.lufti-container--initial .lufti-timestamp,
+.lufti-timestamp.s-loading {
+  opacity: 0;
 }

@@ -1,5 +1,5 @@
 import { Component, Listen, State } from '@stencil/core';
-
+import getMood from '../../utilities/getMood';
 
 @Component({
   tag: 'lufti-main',
@@ -45,10 +45,19 @@ export class LuftiMain {
     let pm25 = "0.00";
     let timestamp = "";
 
+    let errorMessage = "Sry, no data here!";
+    let errorEmoji = "¯\\_(ツ)_/¯";
+
     if (this.componentValues) {
       pm10 = this.componentValues.pm10;
       pm25 = this.componentValues.pm25;
       timestamp = this.componentValues.timestamp;
+
+      document.documentElement.style.setProperty('--lufti-color-primary', getMood(pm10, "0.8"));
+      document.documentElement.style.setProperty('--lufti-color-primary--dark', getMood(pm10, "0.85"));
+      document.documentElement.style.setProperty('--lufti-color-primary--darker', getMood(pm10, "0.9"));
+      document.documentElement.style.setProperty('--lufti-color-primary--weaker', getMood(pm10, "0.5"));
+
     }
 
     let luftiContainerClass = "lufti-container";
@@ -70,12 +79,12 @@ export class LuftiMain {
         <main class="lufti-main">
           <div class={this.isLoading ? "lufti-air-component s-loading" : "lufti-air-component"}>
             <div class="lufti-air-component-value-container">
-              <div class="lufti-air-component-value lufti-air-component-value--pm10">{pm10}</div>
-              <div class="lufti-air-component-value lufti-air-component-value--pm25">{pm25}</div>
+              <div class="lufti-air-component-value lufti-air-component-value--pm10">{pm10 !== "0" ? pm10 : errorEmoji}</div>
+              <div class="lufti-air-component-value lufti-air-component-value--pm25">{pm25 !== "0" ? pm25 : errorMessage}</div>
             </div>
           </div>
           <lufti-search></lufti-search>
-          <div class="lufti-timestamp">{timestamp}</div>
+          <div class={this.isLoading ? "lufti-timestamp s-loading" : "lufti-timestamp"}>{timestamp}</div>
           <lufti-loading class={this.isLoading ? "s-loading" : ""}></lufti-loading>
         </main>
       </div>
