@@ -58,7 +58,7 @@
 }
 
 .lufti-air-component-svg {
-    fill: var(--lufti-color-primary--dark);
+    fill: var(--lufti-color-primary--weaker);
     transform: rotate(90deg);
     stroke-width: 4px;
 }
