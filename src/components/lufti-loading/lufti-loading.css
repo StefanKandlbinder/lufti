@@ -12,6 +12,7 @@ lufti-loading {
   opacity: 0;
   transition: opacity var(--lufti-animation-delay) ease-out;
   will-change: opacity;
+  z-index: 30;
 }
 
 lufti-loading.s-loading {

@@ -12,6 +12,9 @@ import '@stencil/core';
 
 export namespace Components {
 
+  interface LuftiLegend {}
+  interface LuftiLegendAttributes extends StencilHTMLAttributes {}
+
   interface LuftiLoading {}
   interface LuftiLoadingAttributes extends StencilHTMLAttributes {}
 
@@ -28,17 +31,25 @@ export namespace Components {
 
 declare global {
   interface StencilElementInterfaces {
+    'LuftiLegend': Components.LuftiLegend;
     'LuftiLoading': Components.LuftiLoading;
     'LuftiMain': Components.LuftiMain;
     'LuftiSearch': Components.LuftiSearch;
   }
 
   interface StencilIntrinsicElements {
+    'lufti-legend': Components.LuftiLegendAttributes;
     'lufti-loading': Components.LuftiLoadingAttributes;
     'lufti-main': Components.LuftiMainAttributes;
     'lufti-search': Components.LuftiSearchAttributes;
   }
 
+
+  interface HTMLLuftiLegendElement extends Components.LuftiLegend, HTMLStencilElement {}
+  var HTMLLuftiLegendElement: {
+    prototype: HTMLLuftiLegendElement;
+    new (): HTMLLuftiLegendElement;
+  };
 
   interface HTMLLuftiLoadingElement extends Components.LuftiLoading, HTMLStencilElement {}
   var HTMLLuftiLoadingElement: {
@@ -59,12 +70,14 @@ declare global {
   };
 
   interface HTMLElementTagNameMap {
+    'lufti-legend': HTMLLuftiLegendElement
     'lufti-loading': HTMLLuftiLoadingElement
     'lufti-main': HTMLLuftiMainElement
     'lufti-search': HTMLLuftiSearchElement
   }
 
   interface ElementTagNameMap {
+    'lufti-legend': HTMLLuftiLegendElement;
     'lufti-loading': HTMLLuftiLoadingElement;
     'lufti-main': HTMLLuftiMainElement;
     'lufti-search': HTMLLuftiSearchElement;

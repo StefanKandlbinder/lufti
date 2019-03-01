@@ -39,9 +39,11 @@
 
 html {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
+  overflow: hidden;
   height: 100%;
   margin: 0px;
   padding: 0px;
