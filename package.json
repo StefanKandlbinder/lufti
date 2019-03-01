@@ -16,6 +16,8 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@stencil/webpack": "0.0.6",
+    "git-revision-webpack-plugin": "^3.0.3",
     "workbox-build": "3.4.1"
   }
 }
