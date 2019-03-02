@@ -62,6 +62,7 @@
     transition: opacity var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
     will-change: opacity;
     font-weight: 300;
+    z-index: 10;
 }
 
 .lufti-container--initial .lufti-air-component,
@@ -100,8 +101,9 @@
 .lufti-search-container {
   transition: transform 200ms ease-out;
   will-change: transform;
-  transform: translateY(-40px);
+  transform: translateY(-48px);
   position: relative;
+  z-index: 15;;
 }
 
 .lufti-container--initial .lufti-search-container {
@@ -137,4 +139,29 @@
 .lufti-container--initial .lufti-location,
 .lufti-location.s-loading {
   opacity: 0;
+}
+
+.lufti-github,
+.lufti-github:hover,
+.lufti-github:focus,
+.lufti-github:visited,
+.lufti-github:active {
+  border: 0;
+  box-shadow: none;
+  outline: 0;
+  background: transparent;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 44px;
+  height: 44px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lufti-github:hover {
+  cursor: pointer;
+}
+
+.lufti-github path {
+  fill: var(--lufti-color-text);
 }

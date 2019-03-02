@@ -37,7 +37,7 @@ lufti-loading:before {
 }
 
 .lufti-loading-icon path {
-  stroke-width: 2px;
+  stroke-width: 1px;
   stroke: var(--lufti-color-text);
   stroke-dasharray: 27;
   animation: dash 1300ms infinite linear forwards;

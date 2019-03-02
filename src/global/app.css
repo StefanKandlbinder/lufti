@@ -53,3 +53,11 @@ body {
   transition: background-color var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
   will-change: background-color;
 }
+
+*,
+*:after {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */
+}
