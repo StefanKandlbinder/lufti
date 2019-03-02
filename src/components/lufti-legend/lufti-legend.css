@@ -37,6 +37,7 @@
   top: 48px;
   height: 12px;
   width: 100%;
+  box-shadow: 0 0 1px var(--lufti-color-text);
   background: linear-gradient(to right,
       var(--color-stop-0) 0%,
       var(--color-stop-1) 16%,
@@ -67,6 +68,7 @@
 .lufti-legend-scale-stop {
   position: absolute;
   font-size: 12px;
+  font-weight: 300;
   text-align: left;
   bottom: 4px;
 }
@@ -88,10 +90,10 @@
 }
 
 .lufti-legend--horizontal .lufti-legend-scale-stop:after {
-  height: 16px;
+  height: 12px;
   width: 1px;
   left: 0;
-  bottom: 12px;
+  bottom: 16px;
 }
 
 .lufti-legend-scale-stop:first-child:after,
@@ -163,8 +165,8 @@
 }
 
 .lufti-legend-scale--limit {
-  color: rgba(255,0,0,1);
-  font-weight: 400;
+  color: var(--lufti-color-text);
+  font-weight: 500;
 }
 
 .lufti-legend-scale--limit-text {
@@ -173,15 +175,15 @@
 }
 
 .lufti-legend-scale--limit.lufti-legend-scale-stop:after {
-  background: rgba(255,0,0,0.5);
+  background: var(--lufti-color-text);
   height: 2px;
   left: -18px;
   width: 16px;
 }
 
 .lufti-legend--horizontal .lufti-legend-scale--limit.lufti-legend-scale-stop:after {
-  height: 16px;
-  width: 1px;
+  height: 12px;
+  width: 2px;
   left: 0;
-  bottom: 12px;
+  bottom: 16px;
 }
