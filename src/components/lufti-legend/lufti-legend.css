@@ -183,7 +183,7 @@
 
 .lufti-legend--horizontal .lufti-legend-scale--limit.lufti-legend-scale-stop:after {
   height: 12px;
-  width: 2px;
-  left: 0;
+  width: 3px;
+  left: -1px;
   bottom: 16px;
 }
