@@ -44,7 +44,7 @@ export class LuftiMain {
     let pm10 = "0.00";
     let pm25 = "0.00";
     let timestamp = "";
-
+    // let location = { latitude: "", longitude:"" };
     let errorMessage = "Sry, no data here!";
     let errorEmoji = "¯\\_(ツ)_/¯";
 
@@ -52,12 +52,12 @@ export class LuftiMain {
       pm10 = this.componentValues.pm10;
       pm25 = this.componentValues.pm25;
       timestamp = this.componentValues.timestamp;
+      // location = {latitude: this.componentValues.latitude, longitude: this.componentValues.longitude};
 
       document.documentElement.style.setProperty('--lufti-color-primary', getMood(pm10, "0.8"));
       document.documentElement.style.setProperty('--lufti-color-primary--dark', getMood(pm10, "0.85"));
       document.documentElement.style.setProperty('--lufti-color-primary--darker', getMood(pm10, "0.9"));
       document.documentElement.style.setProperty('--lufti-color-primary--weaker', getMood(pm10, "0.5"));
-
     }
 
     let luftiContainerClass = "lufti-container";
@@ -86,7 +86,9 @@ export class LuftiMain {
           </div>
           <div class="lufti-search-container">
             <lufti-search></lufti-search>
-            <div class={this.isLoading ? "lufti-timestamp s-loading" : "lufti-timestamp"}>{timestamp}</div>
+            <div class={this.isLoading ? "lufti-timestamp s-loading" : "lufti-timestamp"}>
+              {timestamp}
+            </div>
           </div>
           <lufti-loading class={this.isLoading ? "s-loading" : ""}></lufti-loading>
           <a href="https://github.com/StefanKandlbinder/lufti" class="lufti-github" title="Visit Lufti on Github!">

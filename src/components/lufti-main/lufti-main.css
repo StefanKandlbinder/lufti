@@ -99,6 +99,10 @@
 }
 
 .lufti-search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   transition: transform 200ms ease-out;
   will-change: transform;
   transform: translateY(-44px);
@@ -116,10 +120,10 @@
   bottom: var(--lufti-margin--2);
   opacity: 1;
   transition: opacity var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
-  position: absolute;
-  bottom: -24px;
   width: 100%;
   text-align: center;
+  position: absolute;
+  bottom: -24px;
 }
 
 .lufti-location {

@@ -21,6 +21,13 @@ export namespace Components {
   interface LuftiMain {}
   interface LuftiMainAttributes extends StencilHTMLAttributes {}
 
+  interface LuftiReverseGeo {
+    'location': { latitude: string, longitude: string };
+  }
+  interface LuftiReverseGeoAttributes extends StencilHTMLAttributes {
+    'location'?: { latitude: string, longitude: string };
+  }
+
   interface LuftiSearch {}
   interface LuftiSearchAttributes extends StencilHTMLAttributes {
     'onIsLoading'?: (event: CustomEvent<boolean>) => void;
@@ -34,6 +41,7 @@ declare global {
     'LuftiLegend': Components.LuftiLegend;
     'LuftiLoading': Components.LuftiLoading;
     'LuftiMain': Components.LuftiMain;
+    'LuftiReverseGeo': Components.LuftiReverseGeo;
     'LuftiSearch': Components.LuftiSearch;
   }
 
@@ -41,6 +49,7 @@ declare global {
     'lufti-legend': Components.LuftiLegendAttributes;
     'lufti-loading': Components.LuftiLoadingAttributes;
     'lufti-main': Components.LuftiMainAttributes;
+    'lufti-reverse-geo': Components.LuftiReverseGeoAttributes;
     'lufti-search': Components.LuftiSearchAttributes;
   }
 
@@ -63,6 +72,12 @@ declare global {
     new (): HTMLLuftiMainElement;
   };
 
+  interface HTMLLuftiReverseGeoElement extends Components.LuftiReverseGeo, HTMLStencilElement {}
+  var HTMLLuftiReverseGeoElement: {
+    prototype: HTMLLuftiReverseGeoElement;
+    new (): HTMLLuftiReverseGeoElement;
+  };
+
   interface HTMLLuftiSearchElement extends Components.LuftiSearch, HTMLStencilElement {}
   var HTMLLuftiSearchElement: {
     prototype: HTMLLuftiSearchElement;
@@ -73,6 +88,7 @@ declare global {
     'lufti-legend': HTMLLuftiLegendElement
     'lufti-loading': HTMLLuftiLoadingElement
     'lufti-main': HTMLLuftiMainElement
+    'lufti-reverse-geo': HTMLLuftiReverseGeoElement
     'lufti-search': HTMLLuftiSearchElement
   }
 
@@ -80,6 +96,7 @@ declare global {
     'lufti-legend': HTMLLuftiLegendElement;
     'lufti-loading': HTMLLuftiLoadingElement;
     'lufti-main': HTMLLuftiMainElement;
+    'lufti-reverse-geo': HTMLLuftiReverseGeoElement;
     'lufti-search': HTMLLuftiSearchElement;
   }
 
