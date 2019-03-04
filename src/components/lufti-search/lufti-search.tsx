@@ -82,7 +82,9 @@ export class LuftiSearch {
         if (res.status !== 200) {
           this.luftiIDSelected.emit({ "pm10": "0",
             "pm25": "0",
-            "timestamp": ""});
+            "timestamp": "",
+            "latitude": "",
+            "longitude": ""});
 
           this.loading = false;
           this.isLoading.emit(false);
@@ -98,8 +100,10 @@ export class LuftiSearch {
           parsedRes[parsedRes.length - 1].sensordatavalues[1].value : "0";;
         let timestamp = parsedRes[parsedRes.length - 1].sensordatavalues[0].value_type === "P1" ?
           getStringDateLuftdaten(parsedRes[parsedRes.length - 1].timestamp) : "";
-        let latitude = parsedRes[parsedRes.length - 1].location.latitude;
-        let longitude = parsedRes[parsedRes.length - 1].location.longitude;
+        let latitude = parsedRes[parsedRes.length - 1].sensordatavalues[0].value_type === "P1" ? 
+          parsedRes[parsedRes.length - 1].location.latitude : "";
+        let longitude = parsedRes[parsedRes.length - 1].sensordatavalues[0].value_type === "P1" ? 
+          parsedRes[parsedRes.length - 1].location.longitude : "";
 
         this.luftiIDSelected.emit({ "pm10": pm10,
           "pm25": pm25,
@@ -113,7 +117,9 @@ export class LuftiSearch {
       .catch(err => {
         this.luftiIDSelected.emit({ "pm10": "0",
           "pm25": "0",
-          "timestamp": ""});
+          "timestamp": "",
+          "latitude": "",
+          "longitude": ""});
 
         this.loading = false;
         this.isLoading.emit(false);

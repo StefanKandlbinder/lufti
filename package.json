@@ -11,9 +11,6 @@
     "build.netlify": "npm run build cp src/_redirects www/_redirects"
   },
   "dependencies": {
-    "@esri/arcgis-rest-common-types": "^1.17.0",
-    "@esri/arcgis-rest-geocoder": "^1.17.0",
-    "@esri/arcgis-rest-request": "^1.17.0",
     "@stencil/core": "~0.18.0",
     "@stencil/router": "~0.3.1",
     "d3-scale": "^2.2.2"

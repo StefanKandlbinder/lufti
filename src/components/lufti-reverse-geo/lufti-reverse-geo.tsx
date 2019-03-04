@@ -5,7 +5,7 @@ import getArcgisToken from '../../services/getArcgisToken';
 @Component({
   tag: 'lufti-reverse-geo',
   styleUrl: 'lufti-reverse-geo.css',
-  shadow: false
+  shadow: true
 })
 export class LuftiReverseGeo {
   @Prop({mutable: true, reflectToAttr: true}) location: { latitude: string, longitude: string };
@@ -20,6 +20,12 @@ export class LuftiReverseGeo {
   @State() reverseGeoToken: { token: "", timestamp: Number };
   @State() reverseGeoData: {address};
   @State() loading: boolean;
+
+  hostData() {
+    return {
+      'class': { 'is-open': this.loading }
+    };
+  }
 
   componentDidLoad() {
     this.getToken();
@@ -40,12 +46,15 @@ export class LuftiReverseGeo {
         this.loading = false;
       })
       .catch((err) => {
+        this.loading = false;
         this.reverseGeoToken.token = "";
         console.log(err);
       });
   }
 
   getReverseGeo(token) {
+    this.loading = true;
+
     if (token !== undefined) {
       fetch(`http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?outSr=4326&returnIntersection=false&location=${this.location.longitude},${this.location.latitude}&distance=10&token=${token.token}&f=json`)
         .then(res => {
@@ -75,8 +84,12 @@ export class LuftiReverseGeo {
     }
 
 
-    return (
-      <div class="lufti-reverse-geo-result">{address}</div>
+    return ([
+      <div class="lufti-reverse-geo__loading "><span>.</span><span>.</span><span>.</span></div>,
+      <div class="lufti-reverse-geo-result">
+        {address}
+      </div>
+      ]
     );
   }
 }
