@@ -56,7 +56,7 @@ export class LuftiReverseGeo {
     this.loading = true;
 
     if (token !== undefined) {
-      fetch(`http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?outSr=4326&returnIntersection=false&location=${this.location.longitude},${this.location.latitude}&distance=10&token=${token.token}&f=json`)
+      fetch(`https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?outSr=4326&returnIntersection=false&location=${this.location.longitude},${this.location.latitude}&distance=10&token=${token.token}&f=json`)
         .then(res => {
           if (res.status !== 200) {
             this.loading = false;
