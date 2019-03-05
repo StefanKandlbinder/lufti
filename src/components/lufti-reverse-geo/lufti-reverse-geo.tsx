@@ -56,7 +56,6 @@ export class LuftiReverseGeo {
         .then(res => {
           if (res.status !== 200) {
             this.loading = false;
-
             throw new Error('Invalid!');
           }
           return res.json();
