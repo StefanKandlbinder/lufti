@@ -11,7 +11,7 @@ export class LuftiReverseGeo {
   @Prop({mutable: true, reflectToAttr: true}) location: { latitude: string, longitude: string };
 
   @Watch('location')
-  validateName(newValue: string, oldValue: string) {
+  validateName(newValue: {}, oldValue: {}) {
     if (oldValue !== newValue) {
       this.getReverseGeo(this.reverseGeoToken);
     }
@@ -23,7 +23,7 @@ export class LuftiReverseGeo {
 
   hostData() {
     return {
-      'class': { 'is-open': this.loading }
+      'class': { 's-loading': this.loading }
     };
   }
 
@@ -32,8 +32,6 @@ export class LuftiReverseGeo {
   }
 
   getToken() {
-    this.loading = true;
-
     getArcgisToken()
       .then((res) => {
         let token = {
@@ -43,10 +41,8 @@ export class LuftiReverseGeo {
 
         this.reverseGeoToken = token;
         this.getReverseGeo(token);
-        this.loading = false;
       })
       .catch((err) => {
-        this.loading = false;
         this.reverseGeoToken.token = "";
         console.log(err);
       });
