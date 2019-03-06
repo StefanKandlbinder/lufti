@@ -12,8 +12,6 @@ export class LuftiReverseGeo {
 
   @Watch('location')
   validateName(newValue: {latitude: string, longitude:string}, oldValue: {latitude: string, longitude:string}) {
-    console.log(newValue, oldValue);
-
     if (oldValue !== newValue && newValue.latitude !== "") {
       this.getReverseGeo(this.reverseGeoToken);
     }
