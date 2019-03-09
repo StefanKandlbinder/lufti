@@ -10,11 +10,8 @@ export const config: Config = {
       type: 'www',
       // uncomment the following line to disable service workers in production
       // serviceWorker: null
-      // serviceWorker: {
-      //   swSrc: 'src/sw.js'
-      // }
       serviceWorker: {
-        swSrc: 'src/OneSignalSDKWorker.js'
+        swSrc: 'src/sw.js'
       }
       // serviceWorker: {
       //   runtimeCaching: [{
