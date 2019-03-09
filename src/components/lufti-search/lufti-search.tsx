@@ -1,7 +1,8 @@
 import { Component, State, EventEmitter, Event } from '@stencil/core';
 import { saveState, loadState } from '../../store/localStorage';
 
-import getStringDateLuftdaten from '../../utilities/getStringDateLuftdaten';
+import luftdatenJsonTransformer from '../../models/luftdaten/luftdatenJsonTransformer';
+import { Luftdaten } from '../../models/luftdaten/luftdaten';
 
 @Component({
   tag: 'lufti-search',
@@ -15,7 +16,7 @@ export class LuftiSearch {
   @State() sensorIDInputValid = false;
   @State() loading = false;
 
-  @Event({ bubbles: true, composed: true }) luftiIDSelected: EventEmitter<{}>;
+  @Event({ bubbles: true, composed: true }) luftdaten: EventEmitter<Luftdaten>;
   @Event({ bubbles: true, composed: true }) luftiID: EventEmitter<string>;
   @Event({ bubbles: true, composed: true }) isLoading: EventEmitter<boolean>;
 
@@ -80,11 +81,8 @@ export class LuftiSearch {
     fetch(`https://api.luftdaten.info/v1/sensor/${this.sensorIDInput}/`)
       .then(res => {
         if (res.status !== 200) {
-          this.luftiIDSelected.emit({ "pm10": "0",
-            "pm25": "0",
-            "timestamp": "",
-            "latitude": "",
-            "longitude": ""});
+          this.luftdaten
+            .emit(null);
 
           this.loading = false;
           this.isLoading.emit(false);
@@ -94,32 +92,13 @@ export class LuftiSearch {
         return res.json();
       })
       .then(parsedRes => {
-        let pm10 = parsedRes[parsedRes.length - 1].sensordatavalues[0].value_type === "P1" ?
-          parsedRes[parsedRes.length - 1].sensordatavalues[0].value : "0";
-        let pm25 = parsedRes[parsedRes.length - 1].sensordatavalues[1].value_type === "P2" ?
-          parsedRes[parsedRes.length - 1].sensordatavalues[1].value : "0";;
-        let timestamp = parsedRes[parsedRes.length - 1].sensordatavalues[0].value_type === "P1" ?
-          getStringDateLuftdaten(parsedRes[parsedRes.length - 1].timestamp) : "";
-        let latitude = parsedRes[parsedRes.length - 1].sensordatavalues[0].value_type === "P1" ? 
-          parsedRes[parsedRes.length - 1].location.latitude : "";
-        let longitude = parsedRes[parsedRes.length - 1].sensordatavalues[0].value_type === "P1" ? 
-          parsedRes[parsedRes.length - 1].location.longitude : "";
-
-        this.luftiIDSelected.emit({ "pm10": pm10,
-          "pm25": pm25,
-          "timestamp": timestamp,
-          "longitude": longitude,
-          "latitude": latitude });
+        this.luftdaten.emit(luftdatenJsonTransformer(parsedRes));
 
         this.loading = false;
         this.isLoading.emit(false);
       })
       .catch(err => {
-        this.luftiIDSelected.emit({ "pm10": "0",
-          "pm25": "0",
-          "timestamp": "",
-          "latitude": "",
-          "longitude": ""});
+        this.luftdaten.emit(null);
 
         this.loading = false;
         this.isLoading.emit(false);

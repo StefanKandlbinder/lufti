@@ -8,17 +8,17 @@ import getArcgisToken from '../../services/getArcgisToken';
   shadow: true
 })
 export class LuftiReverseGeo {
-  @Prop({mutable: true, reflectToAttr: true}) location: { latitude: string, longitude: string };
+  @Prop({ mutable: true, reflectToAttr: true }) location: { latitude: string, longitude: string };
 
   @Watch('location')
-  validateName(newValue: {latitude: string, longitude:string}, oldValue: {latitude: string, longitude:string}) {
+  validateName(newValue: { latitude: string, longitude:string }, oldValue: { latitude: string, longitude:string }) {
     if (oldValue !== newValue && newValue.latitude !== "") {
       this.getReverseGeo(this.reverseGeoToken);
     }
   }
 
-  @State() reverseGeoToken: { token: "", timestamp: Number };
-  @State() reverseGeoData: {address};
+  @State() reverseGeoToken: { token: "", expires: number,  timestamp: number };
+  @State() reverseGeoData: { address };
   @State() loading: boolean;
 
   hostData() {
@@ -36,6 +36,7 @@ export class LuftiReverseGeo {
       .then((res) => {
         let token = {
           token: res.access_token,
+          expires: res.expires_in,
           timestamp: Date.now()
         };
 

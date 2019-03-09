@@ -8,6 +8,12 @@
 import '@stencil/core';
 
 
+import {
+  EventEmitter,
+} from '@stencil/core';
+import {
+  Luftdaten,
+} from './models/luftdaten/luftdaten';
 
 
 export namespace Components {
@@ -31,8 +37,8 @@ export namespace Components {
   interface LuftiSearch {}
   interface LuftiSearchAttributes extends StencilHTMLAttributes {
     'onIsLoading'?: (event: CustomEvent<boolean>) => void;
+    'onLuftdaten'?: (event: CustomEvent<Luftdaten>) => void;
     'onLuftiID'?: (event: CustomEvent<string>) => void;
-    'onLuftiIDSelected'?: (event: CustomEvent<{}>) => void;
   }
 }
 
