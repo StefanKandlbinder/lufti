@@ -20,9 +20,10 @@ export class LuftiSearch {
   @Event({ bubbles: true, composed: true }) luftiID: EventEmitter<string>;
   @Event({ bubbles: true, composed: true }) isLoading: EventEmitter<boolean>;
 
+  /**
+   * If a station ID is defined in Local Storage fetch the new data
+   */
   componentDidLoad() {
-    // console.log("componentDidLoad [lufti-search]");
-
     const persistedState = loadState();
 
     if (persistedState !== undefined) {
@@ -41,8 +42,6 @@ export class LuftiSearch {
   }
 
   componentWillUpdate() {
-    // console.log("componentWillUpdate [lufti-search]");
-
     const persistedState = loadState();
 
     if (persistedState !== undefined) {
@@ -51,11 +50,11 @@ export class LuftiSearch {
   }
 
   /**
-   * Fetch new data when the tan gets active again
+   * Fetch new data when the tab gets active again
    */
   handleVisibilityChange() {
     if (document.hidden) {
-      // pauseSimulation();
+      // doSomething();
     }
     else  {
       this.fetchData();
@@ -73,6 +72,9 @@ export class LuftiSearch {
     }
   }
 
+  /**
+   * send a reuest and if the respond is fine emit a new Luftdaten object
+   */
   fetchData() {
     this.sensorIDInput = this.luftiInput.value;
     this.loading = true;
@@ -106,6 +108,10 @@ export class LuftiSearch {
       });
   }
 
+  /**
+   * persist the sensor ID and then fetch the data
+   * @param event the submit event handler
+   */
   onGetData(event: Event) {
     event.preventDefault();
 

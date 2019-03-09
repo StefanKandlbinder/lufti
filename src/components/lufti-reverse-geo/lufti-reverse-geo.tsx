@@ -15,6 +15,10 @@ export class LuftiReverseGeo {
     if (oldValue !== newValue && newValue.latitude !== "") {
       this.getReverseGeo(this.reverseGeoToken);
     }
+
+    if (newValue.longitude === "") {
+      this.reverseGeoData = null;
+    }
   }
 
   @State() reverseGeoToken: { token: "", expires: number,  timestamp: number };
@@ -27,6 +31,9 @@ export class LuftiReverseGeo {
     };
   }
 
+  /**
+   * fetch a valid ARCGIS token
+   */
   componentDidLoad() {
     this.getToken();
   }
@@ -56,6 +63,7 @@ export class LuftiReverseGeo {
       fetch(`https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?outSr=4326&returnIntersection=false&location=${this.location.longitude},${this.location.latitude}&distance=10&token=${token.token}&f=json`)
         .then(res => {
           if (res.status !== 200) {
+            this.reverseGeoData = null;
             this.loading = false;
             throw new Error('Invalid!');
           }
@@ -66,6 +74,7 @@ export class LuftiReverseGeo {
           this.loading = false;
         })
         .catch(err => {
+          this.reverseGeoData = null;
           this.loading = false;
           console.log(err);
         });
@@ -83,7 +92,7 @@ export class LuftiReverseGeo {
     return ([
       <div class="lufti-reverse-geo__loading "><span>.</span><span>.</span><span>.</span></div>,
       <div class="lufti-reverse-geo-result">
-        {address}
+        { address }
       </div>
       ]
     );

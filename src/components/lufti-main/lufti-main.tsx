@@ -37,6 +37,9 @@ export class LuftiMain {
     }
   }
 
+  /**
+   * change the theme color depending on the incoming pm10 value
+   */
   updateUI() {
     document.documentElement.style.setProperty('--lufti-color-primary', getMood(this.luftdaten.components.pm10, "0.8"));
     document.documentElement.style.setProperty('--lufti-color-primary--dark', getMood(this.luftdaten.components.pm10, "0.85"));
@@ -79,7 +82,7 @@ export class LuftiMain {
             <lufti-search></lufti-search>
             <div class={this.isLoading ? "lufti-timestamp s-loading" : "lufti-timestamp"}>
               <lufti-reverse-geo location={ this.luftdaten.location }></lufti-reverse-geo>
-              { this.luftdaten.timestamp }
+              { this.luftdaten.timestamp === "" ? "" : this.luftdaten.timestamp }
             </div>
           </div>
           <lufti-loading class={ this.isLoading ? "s-loading" : "" }></lufti-loading>
