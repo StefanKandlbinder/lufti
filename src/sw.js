@@ -1,4 +1,6 @@
 importScripts('workbox-v3.4.1/workbox-sw.js');
+importScripts('https://cdn.onesignal.com/sdks/OneSignalSDKWorker.js');
+importScripts('https://cdn.onesignal.com/sdks/OneSignalSDKWorker.js');
 
 self.workbox.precaching.precacheAndRoute([]);
 
