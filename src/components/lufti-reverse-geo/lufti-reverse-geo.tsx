@@ -13,7 +13,12 @@ export class LuftiReverseGeo {
   @Watch('location')
   validateName(newValue: { latitude: string, longitude:string }, oldValue: { latitude: string, longitude:string }) {
     if (oldValue !== newValue && newValue.latitude !== "") {
-      this.getReverseGeo(this.reverseGeoToken);
+      if ((this.reverseGeoToken.expires + this.reverseGeoToken.timestamp) > Date.now()) {
+        this.getToken();
+      }
+      else {
+        this.getReverseGeo(this.reverseGeoToken);
+      }
     }
 
     if (newValue.longitude === "") {
