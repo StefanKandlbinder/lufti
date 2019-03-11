@@ -96,9 +96,9 @@ export class LuftiSearch {
       .then(parsedRes => {
         this.luftdaten.emit(luftdatenJsonTransformer(parsedRes));
 
-        Notification.requestPermission(function(status) {
+        /* Notification.requestPermission(function(status) {
           console.log('Notification permission status:', status);
-        });
+        }); */
 
         this.loading = false;
         this.isLoading.emit(false);
