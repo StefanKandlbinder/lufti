@@ -1,4 +1,4 @@
-import { Component, Listen, State } from '@stencil/core';
+import { Component, Listen, State, h } from '@stencil/core';
 
 import { Luftdaten } from '../../models/luftdaten/luftdaten';
 import getMood from '../../utilities/getMood';
@@ -16,21 +16,21 @@ export class LuftiMain {
   @State() luftiID: string;
   @State() isLoading: boolean;
 
-  @Listen('body:luftdaten')
+  @Listen('luftdaten', { target: 'body' })
   onLuftdatenEmitted(luftdaten) {
     if (this.luftdaten !== null) {
       this.luftdaten = luftdaten.detail;
     }
   }
 
-  @Listen('body:luftiID')
+  @Listen('luftiID', { target: 'body' })
   onLuftiID(luftiID) {
     if (this.luftiID !== null) {
       this.luftiID = luftiID.detail;
     }
   }
 
-  @Listen('body:isLoading')
+  @Listen('isLoading', { target: 'body' })
   onIsLoading(isLoading) {
     if (this.isLoading !== null) {
       this.isLoading = isLoading.detail;

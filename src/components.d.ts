@@ -5,59 +5,22 @@
  */
 
 
-import '@stencil/core';
-
-
-import {
-  EventEmitter,
-} from '@stencil/core';
+import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
   Luftdaten,
 } from './models/luftdaten/luftdaten';
 
-
 export namespace Components {
-
   interface LuftiLegend {}
-  interface LuftiLegendAttributes extends StencilHTMLAttributes {}
-
   interface LuftiLoading {}
-  interface LuftiLoadingAttributes extends StencilHTMLAttributes {}
-
   interface LuftiMain {}
-  interface LuftiMainAttributes extends StencilHTMLAttributes {}
-
   interface LuftiReverseGeo {
     'location': { latitude: string, longitude: string };
   }
-  interface LuftiReverseGeoAttributes extends StencilHTMLAttributes {
-    'location'?: { latitude: string, longitude: string };
-  }
-
   interface LuftiSearch {}
-  interface LuftiSearchAttributes extends StencilHTMLAttributes {
-    'onIsLoading'?: (event: CustomEvent<boolean>) => void;
-    'onLuftdaten'?: (event: CustomEvent<Luftdaten>) => void;
-    'onLuftiID'?: (event: CustomEvent<string>) => void;
-  }
 }
 
 declare global {
-  interface StencilElementInterfaces {
-    'LuftiLegend': Components.LuftiLegend;
-    'LuftiLoading': Components.LuftiLoading;
-    'LuftiMain': Components.LuftiMain;
-    'LuftiReverseGeo': Components.LuftiReverseGeo;
-    'LuftiSearch': Components.LuftiSearch;
-  }
-
-  interface StencilIntrinsicElements {
-    'lufti-legend': Components.LuftiLegendAttributes;
-    'lufti-loading': Components.LuftiLoadingAttributes;
-    'lufti-main': Components.LuftiMainAttributes;
-    'lufti-reverse-geo': Components.LuftiReverseGeoAttributes;
-    'lufti-search': Components.LuftiSearchAttributes;
-  }
 
 
   interface HTMLLuftiLegendElement extends Components.LuftiLegend, HTMLStencilElement {}
@@ -89,30 +52,44 @@ declare global {
     prototype: HTMLLuftiSearchElement;
     new (): HTMLLuftiSearchElement;
   };
-
   interface HTMLElementTagNameMap {
-    'lufti-legend': HTMLLuftiLegendElement
-    'lufti-loading': HTMLLuftiLoadingElement
-    'lufti-main': HTMLLuftiMainElement
-    'lufti-reverse-geo': HTMLLuftiReverseGeoElement
-    'lufti-search': HTMLLuftiSearchElement
-  }
-
-  interface ElementTagNameMap {
     'lufti-legend': HTMLLuftiLegendElement;
     'lufti-loading': HTMLLuftiLoadingElement;
     'lufti-main': HTMLLuftiMainElement;
     'lufti-reverse-geo': HTMLLuftiReverseGeoElement;
     'lufti-search': HTMLLuftiSearchElement;
   }
-
-
-  export namespace JSX {
-    export interface Element {}
-    export interface IntrinsicElements extends StencilIntrinsicElements {
-      [tagName: string]: any;
-    }
-  }
-  export interface HTMLAttributes extends StencilHTMLAttributes {}
-
 }
+
+declare namespace LocalJSX {
+  interface LuftiLegend extends JSXBase.HTMLAttributes<HTMLLuftiLegendElement> {}
+  interface LuftiLoading extends JSXBase.HTMLAttributes<HTMLLuftiLoadingElement> {}
+  interface LuftiMain extends JSXBase.HTMLAttributes<HTMLLuftiMainElement> {}
+  interface LuftiReverseGeo extends JSXBase.HTMLAttributes<HTMLLuftiReverseGeoElement> {
+    'location'?: { latitude: string, longitude: string };
+  }
+  interface LuftiSearch extends JSXBase.HTMLAttributes<HTMLLuftiSearchElement> {
+    'onIsLoading'?: (event: CustomEvent<boolean>) => void;
+    'onLuftdaten'?: (event: CustomEvent<Luftdaten>) => void;
+    'onLuftiID'?: (event: CustomEvent<string>) => void;
+  }
+
+  interface IntrinsicElements {
+    'lufti-legend': LuftiLegend;
+    'lufti-loading': LuftiLoading;
+    'lufti-main': LuftiMain;
+    'lufti-reverse-geo': LuftiReverseGeo;
+    'lufti-search': LuftiSearch;
+  }
+}
+
+export { LocalJSX as JSX };
+
+
+declare module "@stencil/core" {
+  export namespace JSX {
+    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+  }
+}
+
+

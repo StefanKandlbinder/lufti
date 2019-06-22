@@ -1,4 +1,4 @@
-import { Component, State, EventEmitter, Event } from '@stencil/core';
+import { Component, State, EventEmitter, Event, h } from '@stencil/core';
 import { saveState, loadState } from '../../store/localStorage';
 
 import luftdatenJsonTransformer from '../../models/luftdaten/luftdatenJsonTransformer';
