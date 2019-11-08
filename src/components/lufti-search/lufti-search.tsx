@@ -56,7 +56,7 @@ export class LuftiSearch {
     if (document.hidden) {
       // doSomething();
     }
-    else  {
+    else {
       this.fetchData();
     }
   }
@@ -80,36 +80,78 @@ export class LuftiSearch {
     this.loading = true;
     this.isLoading.emit(true);
 
-    fetch(`https://api.luftdaten.info/v1/sensor/${this.sensorIDInput}/`)
-      .then(res => {
-        if (res.status !== 200) {
-          this.luftdaten
-            .emit(null);
+    fetch(`https://api.luftdaten.info/static/v2/data.dust.min.json`, {
+      headers: {
+        mode: 'cors',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(this.handleResponse)
+      .then(response => {
+        this.loading = false;
+        this.isLoading.emit(false);
 
-          this.loading = false;
-          this.isLoading.emit(false);
+        let station = response.filter(station => {
+          return station.sensor.id === this.sensorIDInput
+        })
 
-          throw new Error('Invalid!');
-        }
-        return res.json();
-      })
-      .then(parsedRes => {
-        this.luftdaten.emit(luftdatenJsonTransformer(parsedRes));
+        this.luftdaten.emit(luftdatenJsonTransformer(station));
 
         /* Notification.requestPermission(function(status) {
           console.log('Notification permission status:', status);
         }); */
-
-        this.loading = false;
-        this.isLoading.emit(false);
       })
-      .catch(err => {
-        this.luftdaten.emit(null);
+      .catch(error => {
+        this.luftdaten
+          .emit(null);
 
         this.loading = false;
         this.isLoading.emit(false);
-        console.log(err);
-      });
+
+        // throw new Error(error);
+        console.log(error);
+      })
+  }
+
+  handleResponse(response) {
+    let contentType = response.headers.get('content-type')
+    if (contentType.includes('application/json')) {
+      return this.handleJSONResponse(response)
+    } else if (contentType.includes('text/html')) {
+      return this.handleTextResponse(response)
+    } else {
+      // Other response types as necessary. I haven't found a need for them yet though.
+      throw new Error(`Sorry, content-type ${contentType} not supported`)
+    }
+  }
+
+  handleJSONResponse(response) {
+    return response.json()
+      .then(json => {
+        if (response.ok) {
+          return json
+        } else {
+          return Promise.reject(Object.assign({}, json, {
+            status: response.status,
+            statusText: response.statusText
+          }))
+        }
+      })
+  }
+
+  handleTextResponse(response) {
+    return response.text()
+      .then(text => {
+        if (response.ok) {
+          return text
+        } else {
+          return Promise.reject({
+            status: response.status,
+            statusText: response.statusText,
+            err: text
+          })
+        }
+      })
   }
 
   /**
@@ -158,14 +200,14 @@ export class LuftiSearch {
           class="lufti-search-button"
           disabled={!this.sensorIDInputValid || this.loading}
           type="submit">
-            <svg
-              class="lufti-search-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24" viewBox="0 0 24 24">
-                <path fill="none" d="M0 0h24v24H0V0z" /><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-              </svg>
-          </button>
+          <svg
+            class="lufti-search-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24" viewBox="0 0 24 24">
+            <path fill="none" d="M0 0h24v24H0V0z" /><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+          </svg>
+        </button>
       </form>
     );
   }
