@@ -82,7 +82,6 @@ export class LuftiSearch {
 
     fetch(`https://api.luftdaten.info/static/v2/data.dust.min.json`, {
       headers: {
-        mode: 'cors',
         'Content-Type': 'application/json'
       }
     })
