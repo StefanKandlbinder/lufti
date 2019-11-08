@@ -3,6 +3,7 @@ import { saveState, loadState } from '../../store/localStorage';
 
 import luftdatenJsonTransformer from '../../models/luftdaten/luftdatenJsonTransformer';
 import { Luftdaten } from '../../models/luftdaten/luftdaten';
+import { DataService } from '../../services/getStation';
 
 @Component({
   tag: 'lufti-search',
@@ -80,76 +81,26 @@ export class LuftiSearch {
     this.loading = true;
     this.isLoading.emit(true);
 
-    fetch(`https://api.luftdaten.info/static/v2/data.dust.min.json`, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(this.handleResponse)
+    DataService.getData()
       .then(response => {
         this.loading = false;
         this.isLoading.emit(false);
 
         let station = response.filter(station => {
-          return station.sensor.id === this.sensorIDInput
+          return station.sensor.id.toString() === this.sensorIDInput
         })
 
         this.luftdaten.emit(luftdatenJsonTransformer(station));
-
-        /* Notification.requestPermission(function(status) {
-          console.log('Notification permission status:', status);
-        }); */
       })
-      .catch(error => {
+      .catch(function (error) {
+        // handle error
         this.luftdaten
           .emit(null);
 
         this.loading = false;
         this.isLoading.emit(false);
 
-        // throw new Error(error);
         console.log(error);
-      })
-  }
-
-  handleResponse(response) {
-    let contentType = response.headers.get('content-type')
-    if (contentType.includes('application/json')) {
-      return this.handleJSONResponse(response)
-    } else if (contentType.includes('text/html')) {
-      return this.handleTextResponse(response)
-    } else {
-      // Other response types as necessary. I haven't found a need for them yet though.
-      throw new Error(`Sorry, content-type ${contentType} not supported`)
-    }
-  }
-
-  handleJSONResponse(response) {
-    return response.json()
-      .then(json => {
-        if (response.ok) {
-          return json
-        } else {
-          return Promise.reject(Object.assign({}, json, {
-            status: response.status,
-            statusText: response.statusText
-          }))
-        }
-      })
-  }
-
-  handleTextResponse(response) {
-    return response.text()
-      .then(text => {
-        if (response.ok) {
-          return text
-        } else {
-          return Promise.reject({
-            status: response.status,
-            statusText: response.statusText,
-            err: text
-          })
-        }
       })
   }
 
