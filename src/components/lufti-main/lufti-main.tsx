@@ -43,6 +43,12 @@ export class LuftiMain {
     }
   }
 
+  componentWillUpdate() {
+    if (this.luftdaten.components !== undefined) {
+      this.updateUI();
+    }
+  }
+
   /**
    * change the theme color depending on the incoming pm10 value
    */
@@ -54,14 +60,26 @@ export class LuftiMain {
   }
 
   render() {
-    if (this.luftdaten !== null || this.luftdaten !== undefined) {
-      this.updateUI();
-    }
+    console.info(this.luftdaten);
 
     let luftiContainerClass = "lufti-container";
+    let luftiValues = null;
+    let luftiLocation = null
 
     if (this.luftiID === undefined) {
       luftiContainerClass += " lufti-container--initial";
+    }
+
+    if (this.luftdaten) {
+      luftiValues = <div class="lufti-air-component-value-container">
+          <div class="lufti-air-component-value lufti-air-component-value--pm10">{ this.luftdaten.components.pm10 !== "0" ? this.luftdaten.components.pm10 : this.errorEmoji }</div>
+          <div class="lufti-air-component-value lufti-air-component-value--pm25">{ this.luftdaten.components.pm25 !== "0" ? this.luftdaten.components.pm25 : this.errorMessage }</div>
+        </div>
+
+      luftiLocation = <div class={this.isLoading ? "lufti-timestamp s-loading" : "lufti-timestamp"}>
+          <lufti-reverse-geo location={ this.luftdaten.location }></lufti-reverse-geo>
+          { this.luftdaten.timestamp === "" ? "" : this.luftdaten.timestamp }
+        </div>
     }
 
     return (
@@ -77,17 +95,11 @@ export class LuftiMain {
 
         <main class="lufti-main">
           <div class={this.isLoading ? "lufti-air-component s-loading" : "lufti-air-component"}>
-            <div class="lufti-air-component-value-container">
-              <div class="lufti-air-component-value lufti-air-component-value--pm10">{ this.luftdaten.components.pm10 !== "0" ? this.luftdaten.components.pm10 : this.errorEmoji }</div>
-              <div class="lufti-air-component-value lufti-air-component-value--pm25">{ this.luftdaten.components.pm25 !== "0" ? this.luftdaten.components.pm25 : this.errorMessage }</div>
-            </div>
+            {luftiValues}
           </div>
           <div class="lufti-search-container">
             <lufti-search></lufti-search>
-            <div class={this.isLoading ? "lufti-timestamp s-loading" : "lufti-timestamp"}>
-              <lufti-reverse-geo location={ this.luftdaten.location }></lufti-reverse-geo>
-              { this.luftdaten.timestamp === "" ? "" : this.luftdaten.timestamp }
-            </div>
+            {luftiLocation}
           </div>
           <lufti-loading class={ this.isLoading ? "s-loading" : "" }></lufti-loading>
           <a href="https://github.com/StefanKandlbinder/lufti" class="lufti-github" title="Visit Lufti on Github!">
