@@ -60,8 +60,6 @@ export class LuftiMain {
   }
 
   render() {
-    console.info(this.luftdaten);
-
     let luftiContainerClass = "lufti-container";
     let luftiValues = null;
     let luftiLocation = null
