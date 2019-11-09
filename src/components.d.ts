@@ -12,6 +12,9 @@ import {
 } from './models/luftdaten/luftdaten';
 
 export namespace Components {
+  interface LuftiFace {
+    'mood': number;
+  }
   interface LuftiLegend {}
   interface LuftiLoading {}
   interface LuftiMain {}
@@ -23,6 +26,12 @@ export namespace Components {
 
 declare global {
 
+
+  interface HTMLLuftiFaceElement extends Components.LuftiFace, HTMLStencilElement {}
+  var HTMLLuftiFaceElement: {
+    prototype: HTMLLuftiFaceElement;
+    new (): HTMLLuftiFaceElement;
+  };
 
   interface HTMLLuftiLegendElement extends Components.LuftiLegend, HTMLStencilElement {}
   var HTMLLuftiLegendElement: {
@@ -54,6 +63,7 @@ declare global {
     new (): HTMLLuftiSearchElement;
   };
   interface HTMLElementTagNameMap {
+    'lufti-face': HTMLLuftiFaceElement;
     'lufti-legend': HTMLLuftiLegendElement;
     'lufti-loading': HTMLLuftiLoadingElement;
     'lufti-main': HTMLLuftiMainElement;
@@ -63,6 +73,9 @@ declare global {
 }
 
 declare namespace LocalJSX {
+  interface LuftiFace {
+    'mood'?: number;
+  }
   interface LuftiLegend {}
   interface LuftiLoading {}
   interface LuftiMain {}
@@ -76,6 +89,7 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
+    'lufti-face': LuftiFace;
     'lufti-legend': LuftiLegend;
     'lufti-loading': LuftiLoading;
     'lufti-main': LuftiMain;
@@ -90,6 +104,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
+      'lufti-face': LocalJSX.LuftiFace & JSXBase.HTMLAttributes<HTMLLuftiFaceElement>;
       'lufti-legend': LocalJSX.LuftiLegend & JSXBase.HTMLAttributes<HTMLLuftiLegendElement>;
       'lufti-loading': LocalJSX.LuftiLoading & JSXBase.HTMLAttributes<HTMLLuftiLoadingElement>;
       'lufti-main': LocalJSX.LuftiMain & JSXBase.HTMLAttributes<HTMLLuftiMainElement>;

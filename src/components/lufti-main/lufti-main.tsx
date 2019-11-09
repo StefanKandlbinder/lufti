@@ -37,15 +37,9 @@ export class LuftiMain {
     }
   }
 
-  componentDidLoad() {
+  componentWillLoad() {
     if (this.luftdaten === null || this.luftdaten === undefined) {
       this.luftdaten = new Luftdaten({ pm10: "0", pm25: "0" }, { longitude: "", latitude: "" }, "");
-    }
-  }
-
-  componentWillUpdate() {
-    if (this.luftdaten.components !== undefined) {
-      this.updateUI();
     }
   }
 
@@ -80,6 +74,10 @@ export class LuftiMain {
         </div>
     }
 
+    if (this.luftdaten.components !== undefined) {
+      this.updateUI();
+    }
+
     return (
       <div class={luftiContainerClass}>
         <header class="lufti-header">
@@ -95,6 +93,7 @@ export class LuftiMain {
           <div class={this.isLoading ? "lufti-air-component s-loading" : "lufti-air-component"}>
             {luftiValues}
           </div>
+          <lufti-face mood={parseFloat(this.luftdaten.components.pm10)}></lufti-face>
           <div class="lufti-search-container">
             <lufti-search></lufti-search>
             {luftiLocation}
