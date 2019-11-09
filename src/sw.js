@@ -23,7 +23,7 @@ self.workbox.routing.registerRoute(
 );
 
 self.workbox.routing.registerRoute(
-  new RegExp('https://api.luftdaten.info/v1/sensor/.*', 'g'),
+  new RegExp('https://api.luftdaten.info/static/v2/data.dust.min.json', 'g'),
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: 'api-cache',
     plugins: [
