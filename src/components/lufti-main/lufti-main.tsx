@@ -37,6 +37,12 @@ export class LuftiMain {
     }
   }
 
+  componentDidLoad() {
+    if (this.luftdaten === null || this.luftdaten === undefined) {
+      this.luftdaten = new Luftdaten({ pm10: "0", pm25: "0" }, { longitude: "", latitude: "" }, "");
+    }
+  }
+
   /**
    * change the theme color depending on the incoming pm10 value
    */
@@ -48,11 +54,9 @@ export class LuftiMain {
   }
 
   render() {
-    if (this.luftdaten === null || this.luftdaten === undefined) {
-      this.luftdaten = new Luftdaten({ pm10: "0", pm25: "0" }, { longitude: "", latitude: "" }, "");
+    if (this.luftdaten !== null || this.luftdaten !== undefined) {
+      this.updateUI();
     }
-
-    this.updateUI();
 
     let luftiContainerClass = "lufti-container";
 
