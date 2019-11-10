@@ -2,6 +2,8 @@
   width: 200px;
 }
 
-#lufti-face__mouth {
+#lufti-face__mouth,
+#lufti-face__eye-brow-right,
+#lufti-face__eye-brow-left {
   stroke-width: 2px;
 }
