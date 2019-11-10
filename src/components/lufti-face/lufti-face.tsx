@@ -16,6 +16,7 @@ export class LuftiFace {
   @State() eyeBallLeft: number = 105;
   @State() eyeBrowLeft: number = 0;
   @State() eyeBrowRight: number = 0;
+  @State() eyeRollRight: number = 0;
 
   @Prop({ mutable: true, reflect:true }) mood: number = 0;
   @Watch('mood')
@@ -45,6 +46,7 @@ export class LuftiFace {
         this.animateEyeBallLeft(progress, from, to)
         this.animateEyeBrowLeft(progress, from, to)
         this.animateEyeBrowRight(progress, from, to)
+        this.animateEyeRollRight(progress, from, to)
 			}
 			else {
 				window.cancelAnimationFrame(this.raf);
@@ -111,11 +113,24 @@ export class LuftiFace {
     const _to = (to > 100) ? 40 : this.mapTo(to, 0, 100, 20, 40);
     const goTo = Math.abs(_from - _to);
 
-    if (_to > _from && this.eyeBrowLeft) {
+    if (_to > _from && this.eyeBrowRight) {
       this.eyeBrowRight = Math.round((progress * goTo) + _from);
     }
     else {
       this.eyeBrowRight = _from - Math.round((progress * goTo));
+    }
+  }
+
+  animateEyeRollRight(progress, from, to) {
+    const _from = (from > 100) ? 40 : this.mapTo(from, 0, 100, 0, 40);
+    const _to = (to > 100) ? 40 : this.mapTo(to, 0, 100, 0, 40);
+    const goTo = Math.abs(_from - _to);
+
+    if (_to > _from && this.eyeRollRight) {
+      this.eyeRollRight = Math.round((progress * goTo) + _from);
+    }
+    else {
+      this.eyeRollRight = _from - Math.round((progress * goTo));
     }
   }
 
@@ -127,6 +142,8 @@ export class LuftiFace {
     let mouth = `M40 200 Q70 240, 140 ${this.mouth} T 260 240`;
     let eyeBrowLeft = `M50 20 Q 95 ${this.eyeBrowLeft} 130 20`;
     let eyeBrowRight = `M150 20 Q 195 ${this.eyeBrowRight} 230 20`;
+    let eyeRollRight = `rotate(${this.eyeRollRight} 190 85)`;
+
     let eyeLeft = <g>
         <path id="lufti-face__eye-brow-left" d={eyeBrowLeft} stroke="white" fill="transparent"/>
         <ellipse cx="90" cy="85" rx="30" ry={this.eyeLeft} fill="rgba(255, 255, 255, 0.9)" stroke="white"/>
@@ -134,8 +151,13 @@ export class LuftiFace {
       </g>
     let eyeRight = <g>
         <path id="lufti-face__eye-brow-right" d={eyeBrowRight} stroke="white" fill="transparent"/>
-        <ellipse cx="190" cy="85" rx="30" ry={this.eyeRight} fill="rgba(255, 255, 255, 0.9)" stroke="white"/>
-        <circle cx="190" cy="105" r="10" fill="rgba(0, 0, 0, 0.9)" stroke="white"></circle>
+        <g id="lufti-face__eye-roll-left" transform={eyeRollRight} transform->
+          <ellipse cx="190" cy="85"
+            rx="30" ry={this.eyeRight}
+            fill="rgba(255, 255, 255, 0.9)"
+            stroke="white"/>
+          <circle cx="190" cy="105" r="10" fill="rgba(0, 0, 0, 0.9)" stroke="white"></circle>
+        </g>
       </g>
 
     return (
