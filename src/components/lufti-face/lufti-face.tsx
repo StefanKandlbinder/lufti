@@ -26,6 +26,12 @@ export class LuftiFace {
     }
   }
 
+  inOutQuad(n) {
+      n *= 2;
+      if (n < 1) return 0.5 * n * n;
+      return - 0.5 * (--n * (n - 2) - 1);
+  }
+
   animate(from, to) {
 		window.cancelAnimationFrame(this.raf);
 
@@ -37,9 +43,10 @@ export class LuftiFace {
 
 		let step = now => {
 			time.elapsed = now - time.start;
-			const progress = time.elapsed / time.total;
+			let progress = time.elapsed / time.total;
 
 			if (progress <= 1.1) {
+        progress = this.inOutQuad(progress);
         this.raf = window.requestAnimationFrame(step);
         this.animateMouth(progress, from, to)
         this.animateEyeLeft(progress, from, to)
