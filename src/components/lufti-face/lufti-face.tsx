@@ -10,7 +10,7 @@ export class LuftiFace {
   raf = null;
   duration: number = 500;
 
-  @State() mouth: number = 290;
+  @State() mouth: number = 260;
   @State() eyeLeft: number = 30;
   @State() eyeRight: number = 30;
   @State() eyeBallLeft: number = 105;
