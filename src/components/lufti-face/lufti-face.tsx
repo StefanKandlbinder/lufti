@@ -8,7 +8,7 @@ import { Component, h, Prop, Watch, State } from '@stencil/core';
 
 export class LuftiFace {
   raf = null;
-  duration: number = 500;
+  duration: number = 300;
 
   @State() mouth: number = 260;
   @State() eyeLeft: number = 30;
