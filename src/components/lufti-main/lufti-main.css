@@ -49,15 +49,15 @@
 .lufti-main {
     flex-grow: 1;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    padding-top: 56px;
 }
 
 .lufti-air-component {
     width: 90vw;
     position: relative;
-    flex-grow: 1;
     opacity: 1;
     transition: opacity var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
     will-change: opacity;
@@ -77,11 +77,6 @@
 }
 
 .lufti-air-component-value-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     background: transparent;
     display: flex;
     flex-direction: column;
@@ -90,12 +85,12 @@
 }
 
 .lufti-air-component-value {
-    font-size: 56px;
+    font-size: 32px;
     text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .lufti-air-component-value--pm25 {
-    font-size: 16px;
+    font-size: 11px;
 }
 
 .lufti-search-container {

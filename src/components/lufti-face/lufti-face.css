@@ -1,3 +1,7 @@
 :host {
-  width: 300px;
+  width: 200px;
+}
+
+#lufti-face__mouth {
+  stroke-width: 2px;
 }
