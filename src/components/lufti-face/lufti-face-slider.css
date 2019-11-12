@@ -1,0 +1,9 @@
+:host {
+  margin-bottom: 60px;
+  display: inline-flex;
+  align-items: center;
+}
+
+input {
+  margin-right: var(--lufti-margin--2);
+}

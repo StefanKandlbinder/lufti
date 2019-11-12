@@ -15,6 +15,7 @@ export namespace Components {
   interface LuftiFace {
     'mood': number;
   }
+  interface LuftiFaceSlider {}
   interface LuftiLegend {}
   interface LuftiLoading {}
   interface LuftiMain {}
@@ -31,6 +32,12 @@ declare global {
   var HTMLLuftiFaceElement: {
     prototype: HTMLLuftiFaceElement;
     new (): HTMLLuftiFaceElement;
+  };
+
+  interface HTMLLuftiFaceSliderElement extends Components.LuftiFaceSlider, HTMLStencilElement {}
+  var HTMLLuftiFaceSliderElement: {
+    prototype: HTMLLuftiFaceSliderElement;
+    new (): HTMLLuftiFaceSliderElement;
   };
 
   interface HTMLLuftiLegendElement extends Components.LuftiLegend, HTMLStencilElement {}
@@ -64,6 +71,7 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'lufti-face': HTMLLuftiFaceElement;
+    'lufti-face-slider': HTMLLuftiFaceSliderElement;
     'lufti-legend': HTMLLuftiLegendElement;
     'lufti-loading': HTMLLuftiLoadingElement;
     'lufti-main': HTMLLuftiMainElement;
@@ -76,6 +84,7 @@ declare namespace LocalJSX {
   interface LuftiFace {
     'mood'?: number;
   }
+  interface LuftiFaceSlider {}
   interface LuftiLegend {}
   interface LuftiLoading {}
   interface LuftiMain {}
@@ -90,6 +99,7 @@ declare namespace LocalJSX {
 
   interface IntrinsicElements {
     'lufti-face': LuftiFace;
+    'lufti-face-slider': LuftiFaceSlider;
     'lufti-legend': LuftiLegend;
     'lufti-loading': LuftiLoading;
     'lufti-main': LuftiMain;
@@ -105,6 +115,7 @@ declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
       'lufti-face': LocalJSX.LuftiFace & JSXBase.HTMLAttributes<HTMLLuftiFaceElement>;
+      'lufti-face-slider': LocalJSX.LuftiFaceSlider & JSXBase.HTMLAttributes<HTMLLuftiFaceSliderElement>;
       'lufti-legend': LocalJSX.LuftiLegend & JSXBase.HTMLAttributes<HTMLLuftiLegendElement>;
       'lufti-loading': LocalJSX.LuftiLoading & JSXBase.HTMLAttributes<HTMLLuftiLoadingElement>;
       'lufti-main': LocalJSX.LuftiMain & JSXBase.HTMLAttributes<HTMLLuftiMainElement>;
