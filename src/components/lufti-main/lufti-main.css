@@ -86,10 +86,35 @@
 
 .lufti-air-component-value {
     font-size: 32px;
+    position: relative;
+    line-height: 1;
+}
+
+.lufti-air-component-value:not(:first-child) {
+  margin-top: 8px;
+}
+
+.lufti-air-component-value:after {
+  content: "PM10";
+  position: absolute;
+  bottom: 2px;
+  left: 100%;
+  margin-left: 4px;
+  display: block;
+  font-size: 11px;
+  line-height: 1;
+  opacity: 0.9;
 }
 
 .lufti-air-component-value--pm25 {
-    font-size: 11px;
+    font-size: 16px;
+}
+
+.lufti-air-component-value--pm25:after {
+  content: "PM25";
+  font-size: 8px;
+  bottom: 1px;
+  margin-left: 2px;
 }
 
 .lufti-search-container {

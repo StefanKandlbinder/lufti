@@ -64,8 +64,8 @@ export class LuftiFace {
   }
 
   animateMouth(progress, from, to) {
-    const _from = (from > 50) ? 190 : this.mapTo(from, 0, 50, 260, 190);
-    const _to = (to > 50) ? 190 : this.mapTo(to, 0, 50, 260, 190);
+    const _from = (from > 50) ? 175 : this.mapTo(from, 0, 50, 260, 175);
+    const _to = (to > 50) ? 175 : this.mapTo(to, 0, 50, 260, 175);
     const goTo = Math.abs(_from - _to);
 
     if (_to > _from && this.mouth) {
@@ -116,8 +116,8 @@ export class LuftiFace {
   }
 
   animateEyeBrowRight(progress, from, to) {
-    const _from = (from > 100) ? 40 : this.mapTo(from, 0, 100, 20, 40);
-    const _to = (to > 100) ? 40 : this.mapTo(to, 0, 100, 20, 40);
+    const _from = (from > 100) ? 50 : this.mapTo(from, 0, 100, 20, 50);
+    const _to = (to > 100) ? 50 : this.mapTo(to, 0, 100, 20, 50);
     const goTo = Math.abs(_from - _to);
 
     if (_to > _from && this.eyeBrowRight) {
@@ -129,8 +129,8 @@ export class LuftiFace {
   }
 
   animateEyeRollRight(progress, from, to) {
-    const _from = (from > 100) ? 40 : this.mapTo(from, 0, 100, 0, 40);
-    const _to = (to > 100) ? 40 : this.mapTo(to, 0, 100, 0, 40);
+    const _from = (from > 100) ? 60 : this.mapTo(from, 0, 100, 0, 60);
+    const _to = (to > 100) ? 60 : this.mapTo(to, 0, 100, 0, 60);
     const goTo = Math.abs(_from - _to);
 
     if (_to > _from && this.eyeRollRight) {
@@ -146,7 +146,7 @@ export class LuftiFace {
   }
 
   render() {
-    let mouth = `M40 200 Q70 240, 140 ${this.mouth} T 260 240`;
+    let mouth = `M40 200 Q70 240, 130 ${this.mouth} T 260 220`;
     let eyeBrowLeft = `M50 20 Q 95 ${this.eyeBrowLeft} 130 20`;
     let eyeBrowRight = `M150 20 Q 195 ${this.eyeBrowRight} 230 20`;
     let eyeRollRight = `rotate(${this.eyeRollRight} 190 85)`;

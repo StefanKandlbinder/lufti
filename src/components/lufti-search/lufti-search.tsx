@@ -11,11 +11,15 @@ import { DataService } from '../../services/getStation';
   shadow: true
 })
 export class LuftiSearch {
+  raf = null;
+  duration: number = 280;
   luftiInput: HTMLInputElement;
 
   @State() sensorIDInput: string;
   @State() sensorIDInputValid = false;
   @State() loading = false;
+  @State() animating = false;
+  @State() turbulence = 0;
 
   @Event({ bubbles: true, composed: true }) luftdaten: EventEmitter<Luftdaten>;
   @Event({ bubbles: true, composed: true }) luftiID: EventEmitter<string>;
@@ -110,6 +114,7 @@ export class LuftiSearch {
    */
   onGetData(event: Event) {
     event.preventDefault();
+    // this.animate();
 
     saveState({
       stationID: this.sensorIDInput
@@ -118,11 +123,47 @@ export class LuftiSearch {
     this.fetchData();
   }
 
+  animate() {
+    this.animating = true;
+		window.cancelAnimationFrame(this.raf);
+
+		const time = {
+			start: performance.now(),
+      total: this.duration,
+      elapsed: 0
+    }
+
+		let step = now => {
+			time.elapsed = now - time.start;
+			let progress = time.elapsed / time.total;
+
+			if (progress <= 1.1) {
+        this.raf = window.requestAnimationFrame(step);
+        this.turbulence = this.mapTo(progress, 0, 1, 0, 0.08)
+			}
+			else {
+        window.cancelAnimationFrame(this.raf);
+        this.animating = false;
+			}
+		}
+
+		this.raf = window.requestAnimationFrame(step);
+  }
+
+  mapTo(value, in_min, in_max, out_min, out_max) {
+    return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+  }
+
   render() {
     let luftiSearchFormClass = "lufti-search-form";
+    let filter = null;
 
     if (this.sensorIDInputValid) {
       luftiSearchFormClass += " lufti-search-form--raised";
+    }
+
+    if (this.animating) {
+      filter={filter: "url(#filter-glitch-1)"};
     }
 
     return (
@@ -130,6 +171,15 @@ export class LuftiSearch {
         aria-label="Sensor ID Form"
         class={luftiSearchFormClass}
         onSubmit={this.onGetData.bind(this)}>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="lufti-search-svg-filter">
+          <defs>
+            <filter id="filter-glitch-1">
+              <feTurbulence type="fractalNoise" baseFrequency={this.turbulence} numOctaves="1" result="warp"></feTurbulence>
+              <feOffset dx="0" dy="0" result="warpOffset"></feOffset>
+              <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warpOffset"></feDisplacementMap>
+            </filter>
+          </defs>
+        </svg>
         <div class="lufti-search-button-spacer"></div>
         <div class="lufti-search">
           <input
@@ -143,13 +193,15 @@ export class LuftiSearch {
             autoComplete="off"
             ref={el => this.luftiInput = el}
             onInput={this.onUserInput.bind(this)}
-            placeholder="your sensor id" />
+            placeholder="your sensor id"
+            style={filter} />
         </div>
         <button
           aria-label="Search Button"
           class="lufti-search-button"
           disabled={!this.sensorIDInputValid || this.loading}
-          type="submit">
+          type="submit"
+          style={filter}>
           <svg
             class="lufti-search-icon"
             xmlns="http://www.w3.org/2000/svg"
