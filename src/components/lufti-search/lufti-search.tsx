@@ -15,7 +15,6 @@ export class LuftiSearch {
   rippleTimeout = null;
   duration: number = 280;
   luftiInput: HTMLInputElement;
-  luftiSubmit: HTMLButtonElement;
 
   @State() sensorIDInput: string;
   @State() sensorIDInputValid = false;
@@ -221,7 +220,6 @@ export class LuftiSearch {
           id="lufti-search-submit"
           class="lufti-search-button"
           disabled={!this.sensorIDInputValid || this.loading}
-          ref={el => this.luftiSubmit = el}
           type="submit"
           onClick={this.onRipple}
           style={filter}>
