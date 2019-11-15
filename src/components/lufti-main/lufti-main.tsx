@@ -2,6 +2,7 @@ import { Component, Listen, State, h } from '@stencil/core';
 
 import { Luftdaten } from '../../models/luftdaten/luftdaten';
 import getMood from '../../utilities/getMood';
+import RGBtoHex from '../../utilities/RGBtoHex';
 
 @Component({
   tag: 'lufti-main',
@@ -41,6 +42,8 @@ export class LuftiMain {
     if (this.luftdaten === null || this.luftdaten === undefined) {
       this.luftdaten = new Luftdaten({ pm10: "0", pm25: "0" }, { longitude: "", latitude: "" }, "");
     }
+
+    this.updateThemeColor();
   }
 
   /**
@@ -51,6 +54,11 @@ export class LuftiMain {
     document.documentElement.style.setProperty('--lufti-color-primary--dark', getMood(this.luftdaten.components.pm10, "0.85"));
     document.documentElement.style.setProperty('--lufti-color-primary--darker', getMood(this.luftdaten.components.pm10, "0.9"));
     document.documentElement.style.setProperty('--lufti-color-primary--weaker', getMood(this.luftdaten.components.pm10, "0.5"));
+    this.updateThemeColor();
+  }
+
+  updateThemeColor() {
+    document.querySelector('meta[name="theme-color"]').setAttribute("content",  RGBtoHex(getMood(this.luftdaten.components.pm10, "1")));
   }
 
   render() {
