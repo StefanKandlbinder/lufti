@@ -12,8 +12,10 @@ import { DataService } from '../../services/getStation';
 })
 export class LuftiSearch {
   raf = null;
+  rippleTimeout = null;
   duration: number = 280;
   luftiInput: HTMLInputElement;
+  luftiSubmit: HTMLButtonElement;
 
   @State() sensorIDInput: string;
   @State() sensorIDInputValid = false;
@@ -44,6 +46,7 @@ export class LuftiSearch {
 
   componentDidUnload() {
     document.removeEventListener("visibilitychange", this.handleVisibilityChange);
+    window.clearTimeout(this.rippleTimeout);
   }
 
   componentWillUpdate() {
@@ -75,6 +78,23 @@ export class LuftiSearch {
     else {
       this.sensorIDInputValid = false;
     }
+  }
+
+  onRipple(event: MouseEvent) {
+    const caller = event.currentTarget as HTMLElement;
+    const boundaries = caller.getBoundingClientRect();
+
+    let x = (event.pageX - boundaries.left);
+    let y = (event.pageY - boundaries.top);
+
+    const ripple = document.createElement('div');
+    ripple.classList.add("lufti-ripple");
+    ripple.setAttribute("style", `left: ${x}px; top: ${y}px`);
+    caller.appendChild(ripple);
+
+    this.rippleTimeout = setTimeout(() => {
+      caller.removeChild(ripple);
+    }, 1500);
   }
 
   /**
@@ -198,9 +218,12 @@ export class LuftiSearch {
         </div>
         <button
           aria-label="Search Button"
+          id="lufti-search-submit"
           class="lufti-search-button"
           disabled={!this.sensorIDInputValid || this.loading}
+          ref={el => this.luftiSubmit = el}
           type="submit"
+          onClick={this.onRipple}
           style={filter}>
           <svg
             class="lufti-search-icon"

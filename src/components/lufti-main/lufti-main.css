@@ -91,7 +91,7 @@
 }
 
 .lufti-air-component-value:not(:first-child) {
-  margin-top: 8px;
+  margin-top: var(--lufti-margin--1);
 }
 
 .lufti-air-component-value:after {
