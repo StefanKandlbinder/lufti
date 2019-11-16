@@ -36,6 +36,22 @@ self.workbox.routing.registerRoute(
 );
 
 self.workbox.routing.registerRoute(
+  new RegExp('https://www.arcgis.com/sharing/oauth2/token/.*', 'g'),
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: 'api-cache',
+    plugins: [
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200]
+      }),
+      new workbox.expiration.Plugin({
+        maxEntries: 1000,
+        maxAgeSeconds: 2 * 60 * 60
+      })
+    ]
+  })
+);
+
+self.workbox.routing.registerRoute(
   new RegExp('https://api.luftdaten.info/static/v2/.*', 'g'),
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: 'api-cache',
