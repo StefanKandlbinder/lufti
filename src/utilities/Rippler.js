@@ -10,16 +10,20 @@ class Rippler {
     const style = document.createElement('style');
     style.innerHTML = `
         .lufti-ripple {
-          content: " ";
           position: absolute;
           top: 50%;
           left: 50%;
           display: block;
           border-radius: 50%;
           width: 1px;
-          height:1px;
-          background: transparent;
-          box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+          height: 1px;
+          outline: none;
+          border: 0;
+          color: transparent;
+          -webkit-tap-highlight-color: transparent;
+          line-height: 0;
+          background: var(--lufti-color-primary);
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
           will-change: box-shadow;
           animation: pulse 1500ms;
         }
