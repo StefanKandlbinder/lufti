@@ -63,6 +63,7 @@
 
 .lufti-header-logo-animated {
   opacity: 0;
+  display: none;
   animation: dash 1300ms infinite linear forwards;
   stroke-dasharray: 27;
 }
@@ -72,6 +73,7 @@
 }
 
 .lufti-header.s-loading .lufti-header-logo-animated {
+  display: block;
   opacity: 1;
 }
 
