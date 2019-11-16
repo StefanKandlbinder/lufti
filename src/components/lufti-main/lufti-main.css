@@ -35,13 +35,48 @@
     will-change: background-color;
 }
 
-.lufti-header-logo {
+.lufti-header-logo-container {
+  position: relative;
   margin-left: var(--lufti-margin--2);
-  fill: var(--lufti-color-text);
   width: 24px;
+  height: 24px;
 }
 
-.lufti-header-logo path {
+.lufti-header-logo,
+.lufti-header-logo-animated {
+  fill: var(--lufti-color-text);
+  width: 24px;
+  position: absolute;
+  left: 0;
+  transition: opacity 500ms ease-out;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 54;
+  }
+}
+
+.lufti-header-logo {
+  opacity: 1;
+}
+
+.lufti-header-logo-animated {
+  opacity: 0;
+  animation: dash 1300ms infinite linear forwards;
+  stroke-dasharray: 27;
+}
+
+.lufti-header.s-loading .lufti-header-logo {
+  opacity: 0;
+}
+
+.lufti-header.s-loading .lufti-header-logo-animated {
+  opacity: 1;
+}
+
+.lufti-header-logo__path,
+.lufti-header-logo__path-animated {
   stroke-width: 1.5px;
   stroke: var(--lufti-color-text);
 }
