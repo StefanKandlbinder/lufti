@@ -26,7 +26,7 @@ class Rippler {
 
         @keyframes pulse {
           0% {
-            box-shadow: 0 0 0 0 var(--lufti-color-primary--weaker);
+            box-shadow: 0 0 0 0 var(--lufti-color-primary);
           }
           70% {
               box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);
