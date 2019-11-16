@@ -23,20 +23,19 @@ class Rippler {
           -webkit-tap-highlight-color: transparent;
           line-height: 0;
           background: var(--lufti-color-primary);
+          opacity: 0
           box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
           will-change: box-shadow;
-          animation: pulse 1500ms;
+          animation: pulse 1000ms;
         }
 
         @keyframes pulse {
           0% {
             box-shadow: 0 0 0 0 var(--lufti-color-primary);
-          }
-          70% {
-              box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);
+            opacity: 1;
           }
           100% {
-              box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+              box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);
           }
         }
     `;
@@ -47,7 +46,7 @@ class Rippler {
 
     this.rippleTimeout = setTimeout(() => {
       caller.removeChild(ripple);
-    }, 1500);
+    }, 1000);
   }
 }
 
