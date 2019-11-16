@@ -1,206 +1,169 @@
 .lufti-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
 
 .lufti-header {
-  position: relative;
+position: relative;
 }
 
 .lufti-header lufti-legend {
-  position: absolute;
-  width: 100%;
-  top: 48px;
-  z-index: -1;
-  opacity: 0.8;
+position: absolute;
+width: 100%;
+top: 48px;
+z-index: -1;
+opacity: 0.8;
 }
 
 .lufti-header__title {
-    margin: 0;
-    background-color: var(--lufti-color-primary--weaker);
-    color: var(--lufti-color-text);;
-    line-height: 1;
-    padding: var(--lufti-margin--3) var(--lufti-margin--2);
-    font-size: 16px;
-    font-weight: 400;
-    text-align: center;
-    letter-spacing: 2px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
-    will-change: background-color;
-}
-
-.lufti-header-logo-container {
-  position: relative;
-  margin-left: var(--lufti-margin--2);
-  width: 24px;
-  height: 24px;
-}
-
-.lufti-header-logo,
-.lufti-header-logo-animated {
-  fill: var(--lufti-color-text);
-  width: 24px;
-  position: absolute;
-  left: 0;
-  transition: opacity 500ms ease-out;
-}
-
-@keyframes dash {
-  to {
-    stroke-dashoffset: 54;
-  }
+  margin: 0;
+  background-color: var(--lufti-color-primary--weaker);
+  color: var(--lufti-color-text);;
+  line-height: 1;
+  padding: var(--lufti-margin--3) var(--lufti-margin--2);
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 2px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
+  will-change: background-color;
 }
 
 .lufti-header-logo {
-  opacity: 1;
+margin-left: var(--lufti-margin--2);
+fill: var(--lufti-color-text);
+width: 24px;
 }
 
-.lufti-header-logo-animated {
-  opacity: 0;
-  display: none;
-  animation: dash 1300ms infinite linear forwards;
-  stroke-dasharray: 27;
-}
-
-.lufti-header.s-loading .lufti-header-logo {
-  opacity: 0;
-}
-
-.lufti-header.s-loading .lufti-header-logo-animated {
-  display: block;
-  opacity: 1;
-}
-
-.lufti-header-logo__path,
-.lufti-header-logo__path-animated {
-  stroke-width: 1.5px;
-  stroke: var(--lufti-color-text);
+.lufti-header-logo path {
+stroke-width: 1.5px;
+stroke: var(--lufti-color-text);
 }
 
 .lufti-main {
-    flex-grow: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    padding-top: 56px;
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 56px;
 }
 
 .lufti-air-component {
-    width: 90vw;
-    position: relative;
-    opacity: 1;
-    transition: opacity var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
-    will-change: opacity;
-    font-weight: 300;
-    z-index: 10;
+  width: 90vw;
+  position: relative;
+  opacity: 1;
+  transition: opacity var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
+  will-change: opacity;
+  font-weight: 300;
+  z-index: 10;
 }
 
 .lufti-container--initial .lufti-air-component,
 .lufti-air-component.s-loading {
-  opacity: 0;
+opacity: 0;
 }
 
 .lufti-air-component-svg {
-    fill: var(--lufti-color-primary--weaker);
-    transform: rotate(90deg);
-    stroke-width: 4px;
+  fill: var(--lufti-color-primary--weaker);
+  transform: rotate(90deg);
+  stroke-width: 4px;
 }
 
 .lufti-air-component-value-container {
-    background: transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .lufti-air-component-value {
-    font-size: 32px;
-    position: relative;
-    line-height: 1;
+  font-size: 32px;
+  position: relative;
+  line-height: 1;
 }
 
 .lufti-air-component-value:not(:first-child) {
-  margin-top: var(--lufti-margin--1);
+margin-top: var(--lufti-margin--1);
 }
 
 .lufti-air-component-value:after {
-  content: "PM10";
-  position: absolute;
-  bottom: 2px;
-  left: 100%;
-  margin-left: 4px;
-  display: block;
-  font-size: 11px;
-  line-height: 1;
-  opacity: 0.9;
+content: "PM10";
+position: absolute;
+bottom: 2px;
+left: 100%;
+margin-left: 4px;
+display: block;
+font-size: 11px;
+line-height: 1;
+opacity: 0.9;
 }
 
 .lufti-air-component-value--pm25 {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .lufti-air-component-value--pm25:after {
-  content: "PM25";
-  font-size: 8px;
-  bottom: 1px;
-  margin-left: 2px;
+content: "PM25";
+font-size: 8px;
+bottom: 1px;
+margin-left: 2px;
 }
 
 .lufti-search-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  transition: transform 200ms ease-out;
-  will-change: transform;
-  transform: translateY(-44px);
-  position: relative;
-  z-index: 15;;
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 100%;
+transition: transform 200ms ease-out;
+will-change: transform;
+transform: translateY(-44px);
+position: relative;
+z-index: 15;;
 }
 
 .lufti-container--initial .lufti-search-container {
-  transform: translateY(calc(-50vh + 20px));
+transform: translateY(calc(-50vh + 20px));
 }
 
 .lufti-timestamp {
-  font-size: 11px;
-  font-weight: 300;
-  bottom: var(--lufti-margin--2);
-  opacity: 1;
-  transition: opacity var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
-  width: 100%;
-  text-align: center;
-  position: absolute;
-  bottom: -36px;
-  display: flex;
-  flex-direction: column;
+font-size: 11px;
+font-weight: 300;
+bottom: var(--lufti-margin--2);
+opacity: 1;
+transition: opacity var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
+width: 100%;
+text-align: center;
+position: absolute;
+bottom: -36px;
+display: flex;
+flex-direction: column;
 }
 
 .lufti-location {
-  font-size: 11px;
-  font-weight: 300;
-  bottom: var(--lufti-margin--2);
-  opacity: 1;
-  transition: opacity var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
-  position: absolute;
-  bottom: -24px;
-  width: 100%;
-  text-align: center;
+font-size: 11px;
+font-weight: 300;
+bottom: var(--lufti-margin--2);
+opacity: 1;
+transition: opacity var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
+position: absolute;
+bottom: -24px;
+width: 100%;
+text-align: center;
 }
 
 .lufti-container--initial .lufti-timestamp,
 .lufti-timestamp.s-loading,
 .lufti-container--initial .lufti-location,
 .lufti-location.s-loading {
-  opacity: 0;
+opacity: 0;
 }
 
 .lufti-github,
@@ -208,22 +171,23 @@
 .lufti-github:focus,
 .lufti-github:visited,
 .lufti-github:active {
-  border: 0;
-  box-shadow: none;
-  outline: 0;
-  background: transparent;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 44px;
-  height: 44px;
-  -webkit-tap-highlight-color: transparent;
+border: 0;
+box-shadow: none;
+outline: 0;
+background: transparent;
+position: fixed;
+bottom: 0;
+right: 0;
+width: 44px;
+height: 44px;
+-webkit-tap-highlight-color: transparent;
+z-index: 20;
 }
 
 .lufti-github:hover {
-  cursor: pointer;
+cursor: pointer;
 }
 
 .lufti-github path {
-  fill: var(--lufti-color-text);
+fill: var(--lufti-color-text);
 }

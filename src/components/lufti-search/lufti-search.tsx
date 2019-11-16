@@ -4,6 +4,7 @@ import { saveState, loadState } from '../../store/localStorage';
 import luftdatenJsonTransformer from '../../models/luftdaten/luftdatenJsonTransformer';
 import { Luftdaten } from '../../models/luftdaten/luftdaten';
 import { DataService } from '../../services/getStation';
+import { Ripple } from '../../utilities/Rippler';
 
 @Component({
   tag: 'lufti-search',
@@ -77,23 +78,6 @@ export class LuftiSearch {
     else {
       this.sensorIDInputValid = false;
     }
-  }
-
-  onRipple(event: MouseEvent) {
-    const caller = event.currentTarget as HTMLElement;
-    const boundaries = caller.getBoundingClientRect();
-
-    let x = (event.pageX - boundaries.left);
-    let y = (event.pageY - boundaries.top);
-
-    const ripple = document.createElement('div');
-    ripple.classList.add("lufti-ripple");
-    ripple.setAttribute("style", `left: ${x}px; top: ${y}px`);
-    caller.appendChild(ripple);
-
-    this.rippleTimeout = setTimeout(() => {
-      caller.removeChild(ripple);
-    }, 1500);
   }
 
   /**
@@ -221,7 +205,7 @@ export class LuftiSearch {
           class="lufti-search-button"
           disabled={!this.sensorIDInputValid || this.loading}
           type="submit"
-          onClick={this.onRipple}
+          onClick={Ripple.showRipple}
           style={filter}>
           <svg
             class="lufti-search-icon"

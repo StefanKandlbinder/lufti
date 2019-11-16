@@ -17,7 +17,7 @@ lufti-loading {
 
 lufti-loading.s-loading {
   transform: none;
-  opacity: 0.7;
+  opacity: 1;
 }
 
 lufti-loading:before {
@@ -28,7 +28,7 @@ lufti-loading:before {
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .lufti-loading-icon {
@@ -41,7 +41,7 @@ lufti-loading:before {
   stroke: var(--lufti-color-text);
   stroke-dasharray: 27;
   animation: dash 1300ms infinite linear forwards;
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 @keyframes dash {

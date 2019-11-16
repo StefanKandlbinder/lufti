@@ -22,6 +22,7 @@ export namespace Components {
   interface LuftiReverseGeo {
     'location': { latitude: string, longitude: string };
   }
+  interface LuftiRipple {}
   interface LuftiSearch {}
 }
 
@@ -64,6 +65,12 @@ declare global {
     new (): HTMLLuftiReverseGeoElement;
   };
 
+  interface HTMLLuftiRippleElement extends Components.LuftiRipple, HTMLStencilElement {}
+  var HTMLLuftiRippleElement: {
+    prototype: HTMLLuftiRippleElement;
+    new (): HTMLLuftiRippleElement;
+  };
+
   interface HTMLLuftiSearchElement extends Components.LuftiSearch, HTMLStencilElement {}
   var HTMLLuftiSearchElement: {
     prototype: HTMLLuftiSearchElement;
@@ -76,6 +83,7 @@ declare global {
     'lufti-loading': HTMLLuftiLoadingElement;
     'lufti-main': HTMLLuftiMainElement;
     'lufti-reverse-geo': HTMLLuftiReverseGeoElement;
+    'lufti-ripple': HTMLLuftiRippleElement;
     'lufti-search': HTMLLuftiSearchElement;
   }
 }
@@ -91,6 +99,7 @@ declare namespace LocalJSX {
   interface LuftiReverseGeo {
     'location'?: { latitude: string, longitude: string };
   }
+  interface LuftiRipple {}
   interface LuftiSearch {
     'onIsLoading'?: (event: CustomEvent<boolean>) => void;
     'onLuftdaten'?: (event: CustomEvent<Luftdaten>) => void;
@@ -104,6 +113,7 @@ declare namespace LocalJSX {
     'lufti-loading': LuftiLoading;
     'lufti-main': LuftiMain;
     'lufti-reverse-geo': LuftiReverseGeo;
+    'lufti-ripple': LuftiRipple;
     'lufti-search': LuftiSearch;
   }
 }
@@ -120,6 +130,7 @@ declare module "@stencil/core" {
       'lufti-loading': LocalJSX.LuftiLoading & JSXBase.HTMLAttributes<HTMLLuftiLoadingElement>;
       'lufti-main': LocalJSX.LuftiMain & JSXBase.HTMLAttributes<HTMLLuftiMainElement>;
       'lufti-reverse-geo': LocalJSX.LuftiReverseGeo & JSXBase.HTMLAttributes<HTMLLuftiReverseGeoElement>;
+      'lufti-ripple': LocalJSX.LuftiRipple & JSXBase.HTMLAttributes<HTMLLuftiRippleElement>;
       'lufti-search': LocalJSX.LuftiSearch & JSXBase.HTMLAttributes<HTMLLuftiSearchElement>;
     }
   }
