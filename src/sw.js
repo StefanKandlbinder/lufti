@@ -7,7 +7,7 @@ self.workbox.precaching.precacheAndRoute([]);
 }) */
 
 self.workbox.routing.registerRoute(
-  /\.(?:png|gif|jpg|jpeg|webp|svg)$/,
+  /\.(?:png|gif|jpg|jpeg|webp|svg|ico)$/,
   new workbox.strategies.CacheFirst({
     cacheName: 'images',
     plugins: [
