@@ -36,7 +36,7 @@ self.workbox.routing.registerRoute(
 );
 
 self.workbox.routing.registerRoute(
-  new RegExp('https://www.arcgis.com/sharing/oauth2/token/.*', 'g'),
+  new RegExp('https://www.arcgis.com/sharing/oauth2/.*', 'g'),
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: 'api-cache',
     plugins: [
