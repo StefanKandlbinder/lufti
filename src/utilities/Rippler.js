@@ -8,6 +8,7 @@ class Rippler {
 
     const ripple = document.createElement('div');
     const style = document.createElement('style');
+
     style.innerHTML = `
         .lufti-ripple {
           position: absolute;
@@ -39,6 +40,7 @@ class Rippler {
           }
         }
     `;
+
     ripple.appendChild(style);
     ripple.classList.add("lufti-ripple");
     ripple.setAttribute("style", `left: ${x}px; top: ${y}px`);

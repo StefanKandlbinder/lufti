@@ -13,7 +13,6 @@ import { Ripple } from '../../utilities/Rippler';
 })
 export class LuftiSearch {
   raf = null;
-  rippleTimeout = null;
   duration: number = 280;
   luftiInput: HTMLInputElement;
 
@@ -46,7 +45,6 @@ export class LuftiSearch {
 
   componentDidUnload() {
     document.removeEventListener("visibilitychange", this.handleVisibilityChange);
-    window.clearTimeout(this.rippleTimeout);
   }
 
   componentWillUpdate() {
