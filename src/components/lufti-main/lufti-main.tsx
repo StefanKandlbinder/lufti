@@ -73,10 +73,24 @@ export class LuftiMain {
     }
 
     if (this.luftdaten) {
-      luftiValues = <div class="lufti-air-component-value-container">
+      if (this.luftdaten.components.pm10 !== "0") {
+        luftiValues = <div class="lufti-air-component-value-container">
+          <div class="lufti-air-component-value lufti-air-component-value--pm10">
+            { this.luftdaten.components.pm10 }
+            <div class="lufti-air-component-title">PM10</div>
+          </div>
+          <div class="lufti-air-component-value lufti-air-component-value--pm25">
+            { this.luftdaten.components.pm25 }
+            <div class="lufti-air-component-title">PM25</div>
+          </div>
+        </div>
+      }
+      else {
+        luftiValues = <div class="lufti-air-component-value-container">
           <div class="lufti-air-component-value lufti-air-component-value--pm10">{ this.luftdaten.components.pm10 !== "0" ? this.luftdaten.components.pm10 : this.errorEmoji }</div>
           <div class="lufti-air-component-value lufti-air-component-value--pm25">{ this.luftdaten.components.pm25 !== "0" ? this.luftdaten.components.pm25 : this.errorMessage }</div>
         </div>
+      }
 
       luftiLocation = <div class={this.isLoading ? "lufti-timestamp s-loading" : "lufti-timestamp"}>
           <lufti-reverse-geo location={ this.luftdaten.location }></lufti-reverse-geo>
@@ -107,7 +121,7 @@ export class LuftiMain {
           <div class={this.isLoading ? "lufti-air-component s-loading" : "lufti-air-component"}>
             {luftiValues}
           </div>
-          <lufti-face id="hankMoody" mood={parseFloat(this.luftdaten.components.pm10)}></lufti-face>
+          <lufti-face id="hankMoody" mood={this.luftdaten.components.pm10 !== "0" ? parseFloat(this.luftdaten.components.pm10) : 40}></lufti-face>
           <div class="lufti-search-container">
             <lufti-search></lufti-search>
             {luftiLocation}

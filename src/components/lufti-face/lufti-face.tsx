@@ -10,7 +10,7 @@ export class LuftiFace {
   raf = null;
   duration: number = 300;
 
-  @State() mouth: number = 260;
+  @State() mouth: number = 250;
   @State() eyeLeft: number = 30;
   @State() eyeRight: number = 30;
   @State() eyeBallLeft: number = 105;
@@ -64,8 +64,8 @@ export class LuftiFace {
   }
 
   animateMouth(progress, from, to) {
-    const _from = (from > 50) ? 175 : this.mapTo(from, 0, 50, 260, 175);
-    const _to = (to > 50) ? 175 : this.mapTo(to, 0, 50, 260, 175);
+    const _from = (from > 50) ? 175 : this.mapTo(from, 0, 50, 250, 175);
+    const _to = (to > 50) ? 175 : this.mapTo(to, 0, 50, 250, 175);
     const goTo = Math.abs(_from - _to);
 
     if (_to > _from && this.mouth) {
