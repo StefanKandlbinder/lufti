@@ -1,3 +1,12 @@
+.lufti-legend:after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .lufti-legend {
   /*--color-stop-opacity: 1;
   --color-stop-0: rgba(62, 147, 208,var(--color-stop-opacity));
