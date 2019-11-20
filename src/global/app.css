@@ -13,11 +13,11 @@
  */
 
  :root {
-  --lufti-color-primary: rgba(62, 147, 208, 0.8);
-  --lufti-color-primary--weak: rgba(62, 147, 208, 0.75);
-  --lufti-color-primary--weaker: rgba(62, 147, 208, 0.5);
-  --lufti-color-primary--dark: rgba(62, 147, 208, 0.85);
-  --lufti-color-primary--darker: rgba(62, 147, 208, 0.9);
+  --lufti-color-primary: rgba(62, 147, 208, 1);
+  --lufti-color-primary--weak: rgba(62, 147, 208, 1);
+  --lufti-color-primary--weaker: rgba(62, 147, 208, 1);
+  --lufti-color-primary--dark: rgba(62, 147, 208, 1);
+  --lufti-color-primary--darker: rgba(62, 147, 208, 1);
   --lufti-color-text: rgba(255, 255, 255, 1);
   --lufti-color-text--weak: rgba(255, 255, 255, 0.7);
   --lufti-color-text--weaker: rgba(255, 255, 255, 0.5);
@@ -49,7 +49,7 @@ body {
   padding: 0px;
   color: var(--lufti-color-text);
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-  background-color: var(--lufti-color-primary--darker);
+  background-color: var(--lufti-color-primary);
   transition: background-color var(--lufti-animation-duration) ease-out var(--lufti-animation-delay);
   will-change: background-color;
 }

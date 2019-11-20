@@ -51,10 +51,10 @@ export class LuftiMain {
    * change the theme color depending on the incoming pm10 value
    */
   updateUI() {
-    document.documentElement.style.setProperty('--lufti-color-primary', getMood(this.luftdaten.components.pm10, "0.8"));
+    document.documentElement.style.setProperty('--lufti-color-primary', getMood(this.luftdaten.components.pm10, "1"));
     document.documentElement.style.setProperty('--lufti-color-primary--dark', getMood(this.luftdaten.components.pm10, "0.85"));
     document.documentElement.style.setProperty('--lufti-color-primary--darker', getMood(this.luftdaten.components.pm10, "0.9"));
-    document.documentElement.style.setProperty('--lufti-color-primary--weaker', getMood(this.luftdaten.components.pm10, "0.5"));
+    document.documentElement.style.setProperty('--lufti-color-primary--weaker', getMood(this.luftdaten.components.pm10, "1"));
     this.updateThemeColor();
   }
 
