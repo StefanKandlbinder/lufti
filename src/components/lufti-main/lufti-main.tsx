@@ -77,11 +77,11 @@ export class LuftiMain {
         luftiValues = <div class="lufti-air-component-value-container">
           <div class="lufti-air-component-value lufti-air-component-value--pm10">
             { this.luftdaten.components.pm10 }
-            <div class="lufti-air-component-title">PM10</div>
+            <div class="lufti-air-component-title">PM 10</div>
           </div>
           <div class="lufti-air-component-value lufti-air-component-value--pm25">
             { this.luftdaten.components.pm25 }
-            <div class="lufti-air-component-title">PM25</div>
+            <div class="lufti-air-component-title">PM 25</div>
           </div>
         </div>
       }
