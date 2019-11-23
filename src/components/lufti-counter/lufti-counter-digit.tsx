@@ -27,16 +27,7 @@ export class LuftiCounterDigit {
     // this.animate();
   }
 
-  inOutQuad(n) {
-      n *= 2;
-      if (n < 1) return 0.5 * n * n;
-      return - 0.5 * (--n * (n - 2) - 1);
-  }
-
-  easeInOutCubic (t) {
-    return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1
-  }
-
+  /* https://gist.github.com/gre/1650294 */
   easeInOutQuint (t) {
     return t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t
   }

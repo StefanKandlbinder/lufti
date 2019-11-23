@@ -38,7 +38,7 @@ export class LuftiCounter {
     const left = temp[0];
     const right = temp[1];
 
-    if (left.length && right.length) {
+    if (left && right) {
       switch (left.length) {
         case 1:
           this.one = left[0]
