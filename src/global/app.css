@@ -13,11 +13,11 @@
  */
 
  :root {
-  --lufti-color-primary: rgba(62, 147, 208, 1);
-  --lufti-color-primary--weak: rgba(62, 147, 208, 1);
-  --lufti-color-primary--weaker: rgba(62, 147, 208, 1);
-  --lufti-color-primary--dark: rgba(62, 147, 208, 1);
-  --lufti-color-primary--darker: rgba(62, 147, 208, 1);
+  --lufti-color-primary: rgba(45, 121, 185, 1);
+  --lufti-color-primary--weak: rgba(45, 121, 185, 1);
+  --lufti-color-primary--weaker: rgba(45, 121, 185, 1);
+  --lufti-color-primary--dark: rgba(45, 121, 185, 1);
+  --lufti-color-primary--darker: rgba(45, 121, 185, 1);
   --lufti-color-text: rgba(255, 255, 255, 1);
   --lufti-color-text--weak: rgba(255, 255, 255, 0.7);
   --lufti-color-text--weaker: rgba(255, 255, 255, 0.5);
