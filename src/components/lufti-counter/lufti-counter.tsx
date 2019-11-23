@@ -40,7 +40,7 @@ export class LuftiCounter {
       right = [0, 0];
     }
 
-    if (left) {
+    if (left && mood !== 0) {
       switch (left.length) {
         case 1:
           this.one = left[0]
@@ -76,6 +76,14 @@ export class LuftiCounter {
           this.tenth = right[0]
           this.hundreds = right[1]
       }
+    }
+    else {
+      this.one = 10
+      this.ten = -1
+      this.hundred = -1
+      this.thousand = -1
+      this.tenth = 10
+      this.hundreds = 10
     }
   }
 

@@ -135,7 +135,7 @@ z-index: 15;;
 }
 
 .lufti-container--initial .lufti-search-container {
-transform: translateY(calc(-50vh + 20px));
+transform: translateY(calc(-50vh + 40px));
 }
 
 .lufti-timestamp {

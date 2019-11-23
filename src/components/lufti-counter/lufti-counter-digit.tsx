@@ -65,9 +65,6 @@ export class LuftiCounterDigit {
 
   animateDigit(progress, from, to) {
     const goTo = Math.abs(from - to);
-    // const goTo = this.mapTo(to, from, to, 0, 100);
-
-    // console.info(from, to, _from, _to, goTo);
 
     if (to > from) {
       // this.digitElement.style.transform = `translateY(${-Math.round(goTo)}%)`

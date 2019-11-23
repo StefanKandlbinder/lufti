@@ -7,9 +7,17 @@
 
 .lufti-counter-digit {
   display: inline-block;
-  overflow: hidden;
   text-align: center;
   line-height: 1;
+  position: relative;
+}
+
+.lufti-counter-digit:after {
+  content: "-";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: block;
 }
 
 .lufti-counter-digit div {
