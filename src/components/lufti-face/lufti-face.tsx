@@ -153,17 +153,23 @@ export class LuftiFace {
 
     let eyeLeft = <g>
         <path id="lufti-face__eye-brow-left" d={eyeBrowLeft} stroke="white" fill="transparent"/>
-        <ellipse cx="90" cy="85" rx="30" ry={this.eyeLeft} fill="rgba(255, 255, 255, 0.9)" stroke="white"/>
-        <circle cx="90" cy={this.eyeBallLeft} r="10" fill="rgba(0, 0, 0, 0.9)" stroke="white"></circle>
+        <ellipse
+          cx="90" cy="85"
+          rx="30" ry={this.eyeLeft}
+          fill="rgba(255, 255, 255, 0.85)"
+          stroke="background: rgba(255, 255, 255, 0.85);
+    color: var(--lufti-color-primary);"/>
+        <circle cx="90" cy={this.eyeBallLeft} r="10" fill="rgba(0, 0, 0, 0.85)" stroke="rgba(255, 255, 255, 0.85)"></circle>
       </g>
     let eyeRight = <g>
         <path id="lufti-face__eye-brow-right" d={eyeBrowRight} stroke="white" fill="transparent"/>
         <g id="lufti-face__eye-roll-left" transform={eyeRollRight} transform->
-          <ellipse cx="190" cy="85"
+          <ellipse
+            cx="190" cy="85"
             rx="30" ry={this.eyeRight}
-            fill="rgba(255, 255, 255, 0.9)"
-            stroke="white"/>
-          <circle cx="190" cy="105" r="10" fill="rgba(0, 0, 0, 0.9)" stroke="white"></circle>
+            fill="rgba(255, 255, 255, 0.85)"
+            stroke="background: rgba(255, 255, 255, 0.85)"/>
+          <circle cx="190" cy="105" r="10" fill="rgba(0, 0, 0, 0.85)" stroke="rgba(255, 255, 255, 0.85)"></circle>
         </g>
       </g>
 

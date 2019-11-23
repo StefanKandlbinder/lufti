@@ -3,6 +3,7 @@
   overflow: hidden;
   line-height: 1;
   height: 16px;
+  letter-spacing: -1px;
 }
 
 .lufti-counter-digit {
