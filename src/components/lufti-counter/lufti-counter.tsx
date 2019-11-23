@@ -26,10 +26,17 @@ export class LuftiCounter {
     }
   }
 
+  componentDidLoad() {
+    this.setCounter(this.mood);
+  }
+
+
   setCounter(mood) {
     const temp = mood.toString().split(".");
     const left = temp[0];
     const right = temp[1];
+
+    console.info(temp);
 
     switch (left.length) {
       case 1:
@@ -69,33 +76,12 @@ export class LuftiCounter {
   }
 
   render() {
-    let thousand = null;
-    let hundred = null;
-    let ten = null;
-    let one = null;
-
-    if (this.thousand !== -1) {
-      thousand = <lufti-counter-digit class="thousand" height={this.height} digit={this.thousand} />
-    }
-
-    if (this.hundred !== -1) {
-      hundred = <lufti-counter-digit class="hundred" height={this.height} digit={this.hundred} />
-    }
-
-    if (this.ten !== -1) {
-      ten = <lufti-counter-digit class="ten" height={this.height} digit={this.ten} />
-    }
-
-    if (this.one !== -1) {
-      one = <lufti-counter-digit class="one" height={this.height} digit={this.one} />
-    }
-
     return (
       <Host ref={el => this.counterElement = el}>
-        {thousand}
-        {hundred}
-        {ten}
-        {one}
+        <lufti-counter-digit class="thousand" height={this.height} digit={this.thousand} style={this.thousand === -1 ? {width: "0"} : {} } />
+        <lufti-counter-digit class="hundred" height={this.height} digit={this.hundred} style={this.hundred === -1 ? {width: "0"} : {} } />
+        <lufti-counter-digit class="ten" height={this.height} digit={this.ten} style={this.ten === -1 ? {width: "0"} : {} } />
+        <lufti-counter-digit class="one" height={this.height} digit={this.one} />
         <span class="lufti-counter-decimal">.</span>
         <lufti-counter-digit class="tenth" height={this.height} digit={this.tenth}/>
         <lufti-counter-digit class="hundreds" height={this.height} digit={this.hundreds}/>

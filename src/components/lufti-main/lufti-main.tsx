@@ -73,7 +73,7 @@ export class LuftiMain {
     }
 
     if (this.luftdaten) {
-      if (this.luftdaten.components.pm10 !== "0") {
+      if (this.luftdaten.components.pm10 !== "0.00") {
         luftiValues = <div class="lufti-air-component-value-container">
           <div class="lufti-air-component-value lufti-air-component-value--pm10">
             <lufti-counter height={32} mood={parseFloat(this.luftdaten.components.pm10)}></lufti-counter>
@@ -87,8 +87,8 @@ export class LuftiMain {
       }
       else {
         luftiValues = <div class="lufti-air-component-value-container">
-          <div class="lufti-air-component-value lufti-air-component-value--pm10">{ this.luftdaten.components.pm10 !== "0" ? this.luftdaten.components.pm10 : this.errorEmoji }</div>
-          <div class="lufti-air-component-value lufti-air-component-value--pm25">{ this.luftdaten.components.pm25 !== "0" ? this.luftdaten.components.pm25 : this.errorMessage }</div>
+          <div class="lufti-air-component-value lufti-air-component-value--pm10">{ this.luftdaten.components.pm10 !== "0.00" ? this.luftdaten.components.pm10 : this.errorEmoji }</div>
+          <div class="lufti-air-component-value lufti-air-component-value--pm25">{ this.luftdaten.components.pm25 !== "0.00" ? this.luftdaten.components.pm25 : this.errorMessage }</div>
         </div>
       }
 
