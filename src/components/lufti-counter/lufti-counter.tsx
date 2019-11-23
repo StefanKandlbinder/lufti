@@ -32,8 +32,6 @@ export class LuftiCounter {
 
 
   setCounter(mood) {
-    console.info(mood);
-
     const temp = mood.toString().split(".");
     const left = temp[0];
     const right = temp[1];
