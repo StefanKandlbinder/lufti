@@ -22,6 +22,8 @@
   --lufti-color-text--weak: rgba(255, 255, 255, 0.7);
   --lufti-color-text--weaker: rgba(255, 255, 255, 0.5);
 
+  --lufti-color-body: var(--lufti-color-primary);
+
   --lufti-animation-delay: 200ms;
   --lufti-animation-duration: 300ms;
 

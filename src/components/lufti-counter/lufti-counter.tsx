@@ -33,10 +33,14 @@ export class LuftiCounter {
 
   setCounter(mood) {
     const temp = mood.toString().split(".");
-    const left = temp[0];
-    const right = temp[1];
+    let left = temp[0];
+    let right = temp[1];
 
-    if (left && right) {
+    if (!right) {
+      right = [0, 0];
+    }
+
+    if (left) {
       switch (left.length) {
         case 1:
           this.one = left[0]
