@@ -1,5 +1,15 @@
-:host {
-  width: 180px;
+
+@media screen and (orientation: portrait) {
+  :host {
+    width: 65vw;
+    max-width: 640px;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  :host {
+    width: 50vh;
+  }
 }
 
 #lufti-face__mouth,
