@@ -37,7 +37,7 @@ export class LuftiCounter {
     let right = temp[1];
 
     if (!right) {
-      right = [0, 0];
+      right = "00";
     }
 
     if (left && mood !== 0) {
@@ -72,9 +72,11 @@ export class LuftiCounter {
         case 1:
           this.tenth = right[0]
           this.hundreds = 0
+          break;
         case 2:
           this.tenth = right[0]
           this.hundreds = right[1]
+          break;
       }
     }
     else {
