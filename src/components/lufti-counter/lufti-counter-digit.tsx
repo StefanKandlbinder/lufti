@@ -1,4 +1,4 @@
-import { Component, h, Prop, Watch, Host } from '@stencil/core';
+import { Component, h, Prop, Watch, Host, State } from '@stencil/core';
 
 @Component({
   tag: 'lufti-counter-digit',
@@ -12,18 +12,19 @@ export class LuftiCounterDigit {
   digitElement: HTMLSpanElement;
   thisElement: HTMLElement;
 
+  @State() digitTransform: number = 0;
   @Prop({ mutable: true }) height: number = 0;
   @Prop({ mutable: true, reflect:true }) digit: number = 0;
   @Watch('digit')
   watchHandler(newValue: number, oldValue: number) {
     if (newValue !== oldValue) {
-      this.animate();
+      this.animate(oldValue * 10, newValue * 10);
     }
   }
 
   componentDidLoad() {
     this.thisElement.style.height = this.height.toString() + "px";
-    this.animate();
+    // this.animate();
   }
 
   inOutQuad(n) {
@@ -40,8 +41,12 @@ export class LuftiCounterDigit {
     return t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t
   }
 
-  animate() {
-		window.cancelAnimationFrame(this.raf);
+  mapTo(value, in_min, in_max, out_min, out_max) {
+    return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+  }
+
+  animate(from, to) {
+    window.cancelAnimationFrame(this.raf);
 
 		const time = {
 			start: performance.now(),
@@ -51,13 +56,13 @@ export class LuftiCounterDigit {
 
 		let step = now => {
 			time.elapsed = now - time.start;
-			let progress = time.elapsed / time.total;
+      let progress = time.elapsed / time.total;
 
 			if (progress <= 1) {
         progress = this.easeInOutQuint(progress);
 
         this.raf = window.requestAnimationFrame(step);
-        this.digitElement.style.transform = `translateY(${-Math.round(progress * this.digit * 10)}%)`
+        this.animateDigit(progress, from, to);
 			}
 			else {
 				window.cancelAnimationFrame(this.raf);
@@ -67,11 +72,28 @@ export class LuftiCounterDigit {
 		this.raf = window.requestAnimationFrame(step);
   }
 
+  animateDigit(progress, from, to) {
+    const goTo = Math.abs(from - to);
+    // const goTo = this.mapTo(to, from, to, 0, 100);
+
+    // console.info(from, to, _from, _to, goTo);
+
+    if (to > from) {
+      // this.digitElement.style.transform = `translateY(${-Math.round(goTo)}%)`
+      this.digitTransform = Math.round((progress * goTo) + from);
+    }
+    else {
+      this.digitTransform = from - Math.round((progress * goTo));
+    }
+  }
+
   render() {
+    let transform = (this.digitTransform).toString();
+
     return (
       <Host ref={el => this.thisElement = el}>
         <span
-          ref={el => this.digitElement = el}
+          style={{transform: `translateY(-${transform}%)`}}
           class="lufti-counter-digit">
             <div>0</div>
             <div>1</div>
