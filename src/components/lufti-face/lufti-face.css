@@ -1,10 +1,17 @@
 :host {
-  width: 200px;
-  margin-top: -44px;
+  width: 180px;
 }
 
 #lufti-face__mouth,
 #lufti-face__eye-brow-right,
 #lufti-face__eye-brow-left {
   stroke-width: 1px;
+}
+
+#eyeLeftGroup {
+  transform: translateY(3px) scale(1.05);
+}
+
+#eyeRightGroup {
+  transform: translateX(12px);
 }

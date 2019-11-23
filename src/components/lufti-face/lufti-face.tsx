@@ -151,7 +151,7 @@ export class LuftiFace {
     let eyeBrowRight = `M150 20 Q 195 ${this.eyeBrowRight} 230 20`;
     let eyeRollRight = `rotate(${this.eyeRollRight} 190 85)`;
 
-    let eyeLeft = <g>
+    let eyeLeft = <g id="eyeLeftGroup">
         <path id="lufti-face__eye-brow-left" d={eyeBrowLeft} stroke="white" fill="transparent"/>
         <ellipse
           cx="90" cy="85"
@@ -161,7 +161,7 @@ export class LuftiFace {
     color: var(--lufti-color-primary);"/>
         <circle cx="90" cy={this.eyeBallLeft} r="10" fill="rgba(0, 0, 0, 0.85)" stroke="rgba(255, 255, 255, 0.85)"></circle>
       </g>
-    let eyeRight = <g>
+    let eyeRight = <g id="eyeRightGroup">
         <path id="lufti-face__eye-brow-right" d={eyeBrowRight} stroke="white" fill="transparent"/>
         <g id="lufti-face__eye-roll-left" transform={eyeRollRight} transform->
           <ellipse
