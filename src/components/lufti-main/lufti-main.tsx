@@ -121,7 +121,7 @@ export class LuftiMain {
           <div class={this.isLoading ? "lufti-air-component s-loading" : "lufti-air-component"}>
             {luftiValues}
           </div>
-          <lufti-face id="hankMoody" mood={this.luftdaten.components.pm10 !== "0" ? parseFloat(this.luftdaten.components.pm10) : 40}></lufti-face>
+          <lufti-face id="hankMoody" mood={this.luftdaten.components.pm10 !== "0.00" ? parseFloat(this.luftdaten.components.pm10) : 40}></lufti-face>
           <div class="lufti-search-container">
             <lufti-search></lufti-search>
             {luftiLocation}
