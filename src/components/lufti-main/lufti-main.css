@@ -67,7 +67,7 @@ stroke: var(--lufti-color-text);
 
 .lufti-container--initial .lufti-air-component,
 .lufti-air-component.s-loading {
-opacity: 0;
+  /* opacity: 0; */
 }
 
 .lufti-air-component-svg {

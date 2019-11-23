@@ -36,7 +36,7 @@ class Rippler {
             opacity: 1;
           }
           100% {
-              box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);
+            box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);
           }
         }
     `;

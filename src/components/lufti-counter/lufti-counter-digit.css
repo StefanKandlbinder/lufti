@@ -1,0 +1,17 @@
+:host {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1;
+  height: 16px;
+}
+
+.lufti-counter-digit {
+  display: inline-block;
+  overflow: hidden;
+  text-align: center;
+  line-height: 1;
+}
+
+.lufti-counter-digit div {
+  line-height: 1;
+}

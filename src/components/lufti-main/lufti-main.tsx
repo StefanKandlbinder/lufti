@@ -41,7 +41,7 @@ export class LuftiMain {
 
   componentWillLoad() {
     if (this.luftdaten === null || this.luftdaten === undefined) {
-      this.luftdaten = new Luftdaten({ pm10: "0", pm25: "0" }, { longitude: "", latitude: "" }, "");
+      this.luftdaten = new Luftdaten({ pm10: "0.00", pm25: "0.00" }, { longitude: "", latitude: "" }, "");
     }
 
     this.updateThemeColor();
@@ -76,11 +76,11 @@ export class LuftiMain {
       if (this.luftdaten.components.pm10 !== "0") {
         luftiValues = <div class="lufti-air-component-value-container">
           <div class="lufti-air-component-value lufti-air-component-value--pm10">
-            { this.luftdaten.components.pm10 }
+            <lufti-counter height={32} mood={parseFloat(this.luftdaten.components.pm10)}></lufti-counter>
             <div class="lufti-air-component-title">PM 10</div>
           </div>
           <div class="lufti-air-component-value lufti-air-component-value--pm25">
-            { this.luftdaten.components.pm25 }
+            <lufti-counter height={16} mood={parseFloat(this.luftdaten.components.pm25)}></lufti-counter>
             <div class="lufti-air-component-title">PM 25</div>
           </div>
         </div>

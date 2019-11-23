@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.lufti-counter-decimal {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1;
+}

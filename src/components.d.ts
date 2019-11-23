@@ -12,6 +12,14 @@ import {
 } from './models/luftdaten/luftdaten';
 
 export namespace Components {
+  interface LuftiCounter {
+    'height': number;
+    'mood': number;
+  }
+  interface LuftiCounterDigit {
+    'digit': number;
+    'height': number;
+  }
   interface LuftiFace {
     'mood': number;
   }
@@ -28,6 +36,18 @@ export namespace Components {
 
 declare global {
 
+
+  interface HTMLLuftiCounterElement extends Components.LuftiCounter, HTMLStencilElement {}
+  var HTMLLuftiCounterElement: {
+    prototype: HTMLLuftiCounterElement;
+    new (): HTMLLuftiCounterElement;
+  };
+
+  interface HTMLLuftiCounterDigitElement extends Components.LuftiCounterDigit, HTMLStencilElement {}
+  var HTMLLuftiCounterDigitElement: {
+    prototype: HTMLLuftiCounterDigitElement;
+    new (): HTMLLuftiCounterDigitElement;
+  };
 
   interface HTMLLuftiFaceElement extends Components.LuftiFace, HTMLStencilElement {}
   var HTMLLuftiFaceElement: {
@@ -77,6 +97,8 @@ declare global {
     new (): HTMLLuftiSearchElement;
   };
   interface HTMLElementTagNameMap {
+    'lufti-counter': HTMLLuftiCounterElement;
+    'lufti-counter-digit': HTMLLuftiCounterDigitElement;
     'lufti-face': HTMLLuftiFaceElement;
     'lufti-face-slider': HTMLLuftiFaceSliderElement;
     'lufti-legend': HTMLLuftiLegendElement;
@@ -89,6 +111,14 @@ declare global {
 }
 
 declare namespace LocalJSX {
+  interface LuftiCounter {
+    'height'?: number;
+    'mood'?: number;
+  }
+  interface LuftiCounterDigit {
+    'digit'?: number;
+    'height'?: number;
+  }
   interface LuftiFace {
     'mood'?: number;
   }
@@ -107,6 +137,8 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
+    'lufti-counter': LuftiCounter;
+    'lufti-counter-digit': LuftiCounterDigit;
     'lufti-face': LuftiFace;
     'lufti-face-slider': LuftiFaceSlider;
     'lufti-legend': LuftiLegend;
@@ -124,6 +156,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
+      'lufti-counter': LocalJSX.LuftiCounter & JSXBase.HTMLAttributes<HTMLLuftiCounterElement>;
+      'lufti-counter-digit': LocalJSX.LuftiCounterDigit & JSXBase.HTMLAttributes<HTMLLuftiCounterDigitElement>;
       'lufti-face': LocalJSX.LuftiFace & JSXBase.HTMLAttributes<HTMLLuftiFaceElement>;
       'lufti-face-slider': LocalJSX.LuftiFaceSlider & JSXBase.HTMLAttributes<HTMLLuftiFaceSliderElement>;
       'lufti-legend': LocalJSX.LuftiLegend & JSXBase.HTMLAttributes<HTMLLuftiLegendElement>;
