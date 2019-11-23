@@ -6,14 +6,14 @@
 }
 
 .lufti-header {
-position: relative;
+  position: relative;
 }
 
 .lufti-header lufti-legend {
-position: absolute;
-width: 100%;
-top: 48px;
-z-index: -1;
+  position: absolute;
+  width: 100%;
+  top: 48px;
+  z-index: -1;
 }
 
 .lufti-header__title {
@@ -51,7 +51,23 @@ stroke: var(--lufti-color-text);
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  padding-top: 56px;
+  padding-top: 64px;
+}
+
+.lufti-main__container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-top: 24px;
+  padding-bottom: 60px;
+  align-items: center;
+  justify-content: center;
+}
+
+.lufti-face-container {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
 }
 
 .lufti-air-component {
@@ -84,41 +100,61 @@ lufti-face {
 .lufti-air-component-value-container {
   background: transparent;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .lufti-air-component-value {
-  font-size: 32px;
+  font-size: 48px;
+  font-weight: 200;
   position: relative;
   line-height: 1;
 }
 
-.lufti-air-component-value:not(:first-child) {
-margin-top: var(--lufti-margin--1);
-}
-
 .lufti-air-component-title {
-position: absolute;
-bottom: 2px;
-left: 100%;
-margin-left: 4px;
 display: block;
-font-size: 13px;
-font-weight: 400;
+font-size: 10px;
+font-weight: 300;
 line-height: 1;
 opacity: 1;
 }
 
+.lufti-air-component-value--pm10 {
+  display: flex;
+  order: 1;
+  align-items: center;
+  padding-right: var(--lufti-margin--2);
+}
+
+.lufti-air-component-value--pm10:after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 50%, transparent);
+  display: block;
+}
+
+.lufti-air-component-value--pm10 .lufti-air-component-title {
+  text-align: center;
+  font-weight: 300;
+  margin-left: 4px;
+}
+
 .lufti-air-component-value--pm25 {
-  font-size: 17px;
+  font-size: 28px;
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  padding-left: var(--lufti-margin--2);
 }
 
 .lufti-air-component-value--pm25 .lufti-air-component-title {
-font-size: 8px;
-bottom: 1px;
-margin-left: 2px;
+  font-size: 10px;
+  padding-right: 2px;
+  text-align: right;
 }
 
 .lufti-search-container {
