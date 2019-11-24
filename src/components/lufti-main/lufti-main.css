@@ -41,7 +41,7 @@ width: 24px;
 }
 
 .lufti-header-logo path {
-stroke-width: 1px;
+stroke-width: 1.2px;
 stroke: var(--lufti-color-text);
 }
 
