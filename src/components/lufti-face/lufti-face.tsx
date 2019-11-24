@@ -32,6 +32,10 @@ export class LuftiFace {
       return - 0.5 * (--n * (n - 2) - 1);
   }
 
+  elasticOut(t) {
+    return Math.sin(-13.0 * (t + 1.0) * Math.PI/2) * Math.pow(2.0, -10.0 * t) + 1.0
+  }
+
   animate(from, to) {
 		window.cancelAnimationFrame(this.raf);
 
@@ -46,7 +50,7 @@ export class LuftiFace {
 			let progress = time.elapsed / time.total;
 
 			if (progress <= 1.1) {
-        progress = this.inOutQuad(progress);
+        progress = this.elasticOut(progress);
         this.raf = window.requestAnimationFrame(step);
         this.animateMouth(progress, from, to)
         this.animateEyeLeft(progress, from, to)

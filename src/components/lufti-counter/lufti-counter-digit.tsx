@@ -32,6 +32,12 @@ export class LuftiCounterDigit {
     return t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t
   }
 
+  /* https://github.com/mattdesl/eases */
+  elasticOut(t) {
+    return Math.sin(-13.0 * (t + 1.0) * Math.PI/2) * Math.pow(2.0, -10.0 * t) + 1.0
+  }
+
+
   mapTo(value, in_min, in_max, out_min, out_max) {
     return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
   }
@@ -50,7 +56,7 @@ export class LuftiCounterDigit {
       let progress = time.elapsed / time.total;
 
 			if (progress <= 1) {
-        progress = this.easeInOutQuint(progress);
+        progress = this.elasticOut(progress);
 
         this.raf = window.requestAnimationFrame(step);
         this.animateDigit(progress, from, to);
