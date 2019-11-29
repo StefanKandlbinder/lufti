@@ -100,7 +100,7 @@ export class LuftiSearch {
       .catch(function (error) {
         // handle error
         this.luftdaten
-          .emit(null);
+          .emit(new Luftdaten({ pm10: "0.00", pm25: "0.00" }, { longitude: "", latitude: "" }, ""));
 
         this.loading = false;
         this.isLoading.emit(false);
@@ -190,6 +190,7 @@ export class LuftiSearch {
             step="1"
             inputmode="numeric"
             pattern="[0-9]*"
+            value=""
             class="lufti-search-input"
             autoComplete="off"
             ref={el => this.luftiInput = el}
