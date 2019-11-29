@@ -13,3 +13,11 @@ Just put in your Sensor ID and you will get the latest data from the server.
 ## Data
 
 The Sensor ID is stored via Local Storage, so by clearing the website data or updating the browser, your Sensor ID will get lost.
+
+## PWA Icon Generator
+
+### npm
+[PWA Asset Generator](https://www.npmjs.com/package/pwa-asset-generator)
+
+### console
+pwa-asset-generator ./src/assets/icon/Logo.svg ./src/assets/pwa/ -f -b "rgba(45, 121, 185, 1)" -i ./src/index.html -m ./src/manifest.json
