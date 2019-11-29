@@ -11,10 +11,8 @@
     "build.netlify": "npm run build cp src/_redirects www/_redirects"
   },
   "dependencies": {
-    "@stencil/core": "1.7.5",
-    "@stencil/router": "^0.3.3",
-    "d3-scale": "^2.2.2",
-    "visibilityjs": "^2.0.2"
+    "@stencil/core": "1.8.1",
+    "d3-scale": "^2.2.2"
   },
   "license": "MIT",
   "devDependencies": {
