@@ -13,7 +13,8 @@
   "dependencies": {
     "@stencil/core": "1.7.5",
     "@stencil/router": "^0.3.3",
-    "d3-scale": "^2.2.2"
+    "d3-scale": "^2.2.2",
+    "visibilityjs": "^2.0.2"
   },
   "license": "MIT",
   "devDependencies": {

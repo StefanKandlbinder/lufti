@@ -1,5 +1,6 @@
 import { Component, State, EventEmitter, Event, h } from '@stencil/core';
 import { saveState, loadState } from '../../store/localStorage';
+import Visibility from 'visibilityjs';
 
 import luftdatenJsonTransformer from '../../models/luftdaten/luftdatenJsonTransformer';
 import { Luftdaten } from '../../models/luftdaten/luftdaten';
@@ -14,6 +15,7 @@ import { Ripple } from '../../utilities/Rippler';
 export class LuftiSearch {
   raf = null;
   duration: number = 280;
+  visibility;
   luftiInput: HTMLInputElement;
 
   @State() sensorIDInput: string;
@@ -39,12 +41,12 @@ export class LuftiSearch {
 
       this.fetchData();
 
-      document.addEventListener("visibilitychange", this.handleVisibilityChange.bind(this), false);
+      this.visibility = Visibility.change(() => {
+        if ( !Visibility.hidden() ) {
+           this.fetchData();
+        }
+      });
     }
-  }
-
-  componentDidUnload() {
-    document.removeEventListener("visibilitychange", this.handleVisibilityChange);
   }
 
   componentWillUpdate() {
@@ -52,18 +54,6 @@ export class LuftiSearch {
 
     if (persistedState !== undefined) {
       this.luftiID.emit(persistedState.stationID);
-    }
-  }
-
-  /**
-   * Fetch new data when the tab gets active again
-   */
-  handleVisibilityChange() {
-    if (document.hidden) {
-      // doSomething();
-    }
-    else {
-      this.fetchData();
     }
   }
 
