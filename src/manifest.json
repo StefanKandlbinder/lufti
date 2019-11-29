@@ -1,8 +1,10 @@
 {
   "name": "To breathe, or not to breathe ...",
   "short_name": "Lufti",
-  "start_url": "https://lufti.netlify.com/",
+  "description": "Weltweiter Echtzeit-Luft-Qualitätsindex basierend auf luftdaten.info",
+  "start_url": "./",
   "display": "standalone",
+  "dir": "ltr",
   "icons": [
     {
       "src": "assets/pwa/manifest-icon-192.png",
