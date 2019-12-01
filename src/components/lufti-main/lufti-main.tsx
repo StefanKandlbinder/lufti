@@ -13,6 +13,7 @@ import { Ripple } from '../../utilities/Rippler';
 export class LuftiMain {
   errorMessage = "Sry, no data here!";
   errorEmoji = "¯\\_(ツ)_/¯";
+  deferredPrompt = null;
 
   @State() luftdaten: Luftdaten;
   @State() luftiID: string;
@@ -43,6 +44,16 @@ export class LuftiMain {
     if (this.luftdaten === null || this.luftdaten === undefined) {
       this.luftdaten = new Luftdaten({ pm10: "0.00", pm25: "0.00" }, { longitude: "", latitude: "" }, "");
     }
+    else {
+      this.showPrompt();
+    }
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent Chrome 76 and later from showing the mini-infobar
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      this.deferredPrompt = e;
+    });
 
     this.updateThemeColor();
   }
@@ -60,6 +71,22 @@ export class LuftiMain {
 
   updateThemeColor() {
     document.querySelector('meta[name="theme-color"]').setAttribute("content",  RGBtoHex(getMood(this.luftdaten.components.pm10, "1")));
+  }
+
+  showPrompt() {
+    if (this.deferredPrompt !== null) {
+      this.deferredPrompt.prompt();
+      // Wait for the user to respond to the prompt
+      this.deferredPrompt.userChoice
+        .then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          } else {
+            console.log('User dismissed the A2HS prompt');
+          }
+          this.deferredPrompt = null;
+        });
+    }
   }
 
   render() {
