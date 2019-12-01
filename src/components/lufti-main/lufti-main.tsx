@@ -23,6 +23,7 @@ export class LuftiMain {
   onLuftdatenEmitted(luftdaten) {
     if (this.luftdaten !== null) {
       this.luftdaten = luftdaten.detail;
+      this.showPrompt();
     }
   }
 
@@ -43,9 +44,6 @@ export class LuftiMain {
   componentWillLoad() {
     if (this.luftdaten === null || this.luftdaten === undefined) {
       this.luftdaten = new Luftdaten({ pm10: "0.00", pm25: "0.00" }, { longitude: "", latitude: "" }, "");
-    }
-    else {
-      this.showPrompt();
     }
 
     window.addEventListener('beforeinstallprompt', (e) => {
