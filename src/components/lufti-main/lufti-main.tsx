@@ -15,6 +15,7 @@ export class LuftiMain {
   errorMessage = "Sry, no data here!";
   errorEmoji = "¯\\_(ツ)_/¯";
   deferredPrompt = null;
+  promptTimeOut = null;
 
   @State() luftdaten: Luftdaten;
   @State() luftiID: string;
@@ -61,6 +62,10 @@ export class LuftiMain {
     this.updateThemeColor();
   }
 
+  componentDidUnload() {
+    window.clearTimeout(this.promptTimeOut);
+  }
+
   /**
    * change the theme color depending on the incoming pm10 value
    */
@@ -94,7 +99,7 @@ export class LuftiMain {
     }
 
     if (this.deferredPrompt !== null && persistedState.count === 3) {
-      showPrompt();
+      this.promptTimeOut = window.setTimeout(showPrompt, 1000);
     }
   }
 
