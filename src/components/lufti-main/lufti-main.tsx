@@ -93,7 +93,7 @@ export class LuftiMain {
         });
     }
 
-    if (this.deferredPrompt !== null && persistedState.count === 7) {
+    if (this.deferredPrompt !== null && persistedState.count === 3) {
       showPrompt();
     }
   }
