@@ -30,7 +30,7 @@ export class LuftiSearch {
    * If a station ID is defined in Local Storage fetch the new data
    */
   componentDidLoad() {
-    const persistedState = loadState();
+    const persistedState = loadState("id");
 
     if (persistedState !== undefined) {
       this.sensorIDInputValid = true;
@@ -48,7 +48,7 @@ export class LuftiSearch {
   }
 
   componentWillUpdate() {
-    const persistedState = loadState();
+    const persistedState = loadState("id");
 
     if (persistedState !== undefined) {
       this.luftiID.emit(persistedState.stationID);
@@ -95,6 +95,8 @@ export class LuftiSearch {
           return station.sensor.id.toString() === this.sensorIDInput
         })
 
+        saveState("requests", {"count": loadState("requests").count + 1});
+
         this.luftdaten.emit(luftdatenJsonTransformer(station));
       })
       .catch(function (error) {
@@ -116,9 +118,7 @@ export class LuftiSearch {
   onGetData(event: Event) {
     event.preventDefault();
 
-    saveState({
-      stationID: this.sensorIDInput
-    });
+    saveState("id", { stationID: this.sensorIDInput });
 
     this.fetchData();
   }

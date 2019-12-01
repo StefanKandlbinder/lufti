@@ -4,6 +4,7 @@ import { Luftdaten } from '../../models/luftdaten/luftdaten';
 import getMood from '../../utilities/getMood';
 import RGBtoHex from '../../utilities/RGBtoHex';
 import { Ripple } from '../../utilities/Rippler';
+import { saveState, loadState } from '../../store/localStorage';
 
 @Component({
   tag: 'lufti-main',
@@ -53,6 +54,10 @@ export class LuftiMain {
       this.deferredPrompt = e;
     });
 
+    if (!loadState("requests")) {
+      saveState("requests", {count: 0})
+    }
+
     this.updateThemeColor();
   }
 
@@ -72,7 +77,9 @@ export class LuftiMain {
   }
 
   showPrompt() {
-    if (this.deferredPrompt !== null) {
+    const persistedState = loadState("requests");
+
+    const showPrompt = () => {
       this.deferredPrompt.prompt();
       // Wait for the user to respond to the prompt
       this.deferredPrompt.userChoice
@@ -84,6 +91,15 @@ export class LuftiMain {
           }
           this.deferredPrompt = null;
         });
+    }
+
+    if (this.deferredPrompt !== null && persistedState.count === 1) {
+      showPrompt();
+    }
+
+    if (this.deferredPrompt !== null && persistedState) {
+      if (persistedState.count % 30 === 0)
+        showPrompt();
     }
   }
 

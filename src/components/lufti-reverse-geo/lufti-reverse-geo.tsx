@@ -79,9 +79,6 @@ export class LuftiReverseGeo {
     if (this.reverseGeoData && this.reverseGeoData.address) {
       address = this.reverseGeoData.address.ShortLabel + ", " + this.reverseGeoData.address.City + ", " + this.reverseGeoData.address.CountryCode
     }
-    else {
-      address = "-";
-    }
 
     return <Host
       class={{
