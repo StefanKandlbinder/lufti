@@ -1,6 +1,7 @@
-import { Component, State, Prop, Watch, h } from '@stencil/core';
+import { Component, State, Prop, Host, Watch, h } from '@stencil/core';
 
-import getArcgisToken from '../../services/getArcgisToken';
+import { GetArcgisTokenDataService } from '../../services/getArcgisToken';
+import { GetReverseGeoDataService } from '../../services/getReverseGeo';
 
 @Component({
   tag: 'lufti-reverse-geo',
@@ -30,12 +31,6 @@ export class LuftiReverseGeo {
   @State() reverseGeoData: { address };
   @State() loading: boolean;
 
-  hostData() {
-    return {
-      'class': { 's-loading': this.loading }
-    };
-  }
-
   /**
    * fetch a valid ARCGIS token
    */
@@ -44,7 +39,7 @@ export class LuftiReverseGeo {
   }
 
   getToken() {
-    getArcgisToken()
+    GetArcgisTokenDataService.getData()
       .then((res) => {
         let token = {
           token: res.access_token,
@@ -65,24 +60,16 @@ export class LuftiReverseGeo {
     this.loading = true;
 
     if (token !== undefined) {
-      fetch(`https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?outSr=4326&returnIntersection=false&location=${this.location.longitude},${this.location.latitude}&distance=10&token=${token.token}&f=json`)
+      GetReverseGeoDataService.getData(this.location, token.token)
         .then(res => {
-          if (res.status !== 200) {
-            this.reverseGeoData = null;
-            this.loading = false;
-            throw new Error('Invalid!');
-          }
-          return res.json();
-        })
-        .then(parsedRes => {
-          this.reverseGeoData = parsedRes;
+          this.reverseGeoData = res;
           this.loading = false;
         })
         .catch(err => {
           this.reverseGeoData = null;
           this.loading = false;
           console.log(err);
-        });
+        })
     }
   }
 
@@ -92,14 +79,18 @@ export class LuftiReverseGeo {
     if (this.reverseGeoData && this.reverseGeoData.address) {
       address = this.reverseGeoData.address.ShortLabel + ", " + this.reverseGeoData.address.City + ", " + this.reverseGeoData.address.CountryCode
     }
+    else {
+      address = "-";
+    }
 
-
-    return ([
-      <div class="lufti-reverse-geo__loading "><span>.</span><span>.</span><span>.</span></div>,
+    return <Host
+      class={{
+        's-loading': this.loading
+      }}>
+      <div class="lufti-reverse-geo__loading "><span>.</span><span>.</span><span>.</span></div>
       <div class="lufti-reverse-geo-result">
         { address }
       </div>
-      ]
-    );
+      </Host>;
   }
 }

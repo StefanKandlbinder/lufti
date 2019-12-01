@@ -3,7 +3,7 @@ import { saveState, loadState } from '../../store/localStorage';
 
 import luftdatenJsonTransformer from '../../models/luftdaten/luftdatenJsonTransformer';
 import { Luftdaten } from '../../models/luftdaten/luftdaten';
-import { DataService } from '../../services/getStation';
+import { GetStationDataService } from '../../services/getStation';
 import { Ripple } from '../../utilities/Rippler';
 
 @Component({
@@ -86,7 +86,7 @@ export class LuftiSearch {
     this.loading = true;
     this.isLoading.emit(true);
 
-    DataService.getData()
+    GetStationDataService.getData()
       .then(response => {
         this.loading = false;
         this.isLoading.emit(false);
@@ -115,40 +115,12 @@ export class LuftiSearch {
    */
   onGetData(event: Event) {
     event.preventDefault();
-    // this.animate();
 
     saveState({
       stationID: this.sensorIDInput
     });
 
     this.fetchData();
-  }
-
-  animate() {
-    this.animating = true;
-		window.cancelAnimationFrame(this.raf);
-
-		const time = {
-			start: performance.now(),
-      total: this.duration,
-      elapsed: 0
-    }
-
-		let step = now => {
-			time.elapsed = now - time.start;
-			let progress = time.elapsed / time.total;
-
-			if (progress <= 1.1) {
-        this.raf = window.requestAnimationFrame(step);
-        this.turbulence = this.mapTo(progress, 0, 1, 0, 0.08)
-			}
-			else {
-        window.cancelAnimationFrame(this.raf);
-        this.animating = false;
-			}
-		}
-
-		this.raf = window.requestAnimationFrame(step);
   }
 
   mapTo(value, in_min, in_max, out_min, out_max) {

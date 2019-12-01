@@ -1,4 +1,6 @@
 class Rippler {
+  rippleTimeout = null;
+
   showRipple(event) {
     const caller = event.currentTarget;
     const boundaries = caller.getBoundingClientRect();
@@ -16,39 +18,42 @@ class Rippler {
           left: 50%;
           display: block;
           border-radius: 50%;
-          width: 1px;
-          height: 1px;
+          width: 70px;
+          height: 70px;
           outline: none;
           border: 0;
           color: transparent;
           -webkit-tap-highlight-color: transparent;
           line-height: 0;
           background: var(--lufti-color-primary);
-          opacity: 0
-          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-          will-change: box-shadow;
-          animation: pulse 1000ms;
+          opacity: 0;
+          transform: scale(0);
+          will-change: transform, opacity;
+          animation: pulse 700ms;
         }
 
         @keyframes pulse {
           0% {
-            box-shadow: 0 0 0 0 var(--lufti-color-primary);
-            opacity: 1;
+            opacity: 0;
+          }
+          20% {
+            opacity: 0.7;
           }
           100% {
-            box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);
+            transform: scale(1);
+            opacity: 0;
           }
         }
     `;
 
     ripple.appendChild(style);
     ripple.classList.add("lufti-ripple");
-    ripple.setAttribute("style", `left: ${x}px; top: ${y}px`);
+    ripple.setAttribute("style", `left: ${x -35}px; top: ${y - 35}px`);
     caller.appendChild(ripple);
 
     this.rippleTimeout = setTimeout(() => {
       caller.removeChild(ripple);
-    }, 1000);
+    }, 10000);
   }
 }
 

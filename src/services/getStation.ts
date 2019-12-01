@@ -18,4 +18,4 @@ class GetStation {
   }
 }
 
-export const DataService = new GetStation();
+export const GetStationDataService = new GetStation();
