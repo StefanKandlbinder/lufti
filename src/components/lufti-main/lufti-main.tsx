@@ -99,7 +99,7 @@ export class LuftiMain {
     }
 
     if (this.deferredPrompt !== null && persistedState.count === 3) {
-      this.promptTimeOut = window.setTimeout(showPrompt, 1000);
+      this.promptTimeOut = window.setTimeout(showPrompt, 1500);
     }
   }
 
