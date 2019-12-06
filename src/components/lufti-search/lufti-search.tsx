@@ -12,8 +12,6 @@ import { Ripple } from '../../utilities/Rippler';
   shadow: true
 })
 export class LuftiSearch {
-  raf = null;
-  duration: number = 280;
   luftiInput: HTMLInputElement;
 
   @State() sensorIDInput: string;
@@ -133,10 +131,6 @@ export class LuftiSearch {
 
     if (this.sensorIDInputValid) {
       luftiSearchFormClass += " lufti-search-form--raised";
-    }
-
-    if (this.animating) {
-      filter={filter: "url(#filter-glitch-1)"};
     }
 
     return (

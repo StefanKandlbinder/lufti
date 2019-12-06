@@ -35,6 +35,7 @@ class Rippler {
         @keyframes pulse {
           0% {
             opacity: 0;
+            transform: scale(0.2);
           }
           20% {
             opacity: 0.7;
