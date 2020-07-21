@@ -1,6 +1,6 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
 
-self.workbox.precaching.precacheAndRoute([]);
+self.workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 
 /* self.workbox.setConfig({
   debug: true
