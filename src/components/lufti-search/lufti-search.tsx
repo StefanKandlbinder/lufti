@@ -143,7 +143,7 @@ export class LuftiSearch {
             <filter id="filter-glitch-1">
               <feTurbulence type="fractalNoise" baseFrequency={this.turbulence} numOctaves="1" result="warp"></feTurbulence>
               <feOffset dx="0" dy="0" result="warpOffset"></feOffset>
-              <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warpOffset"></feDisplacementMap>
+              <feDisplacementMap yChannelSelector="G" scale="30" in="SourceGraphic" in2="warpOffset"></feDisplacementMap>
             </filter>
           </defs>
         </svg>
