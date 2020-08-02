@@ -2,6 +2,7 @@ import { Component, State, Prop, Host, Watch, h } from '@stencil/core';
 
 import { GetArcgisTokenDataService } from '../../services/getArcgisToken';
 import { GetReverseGeoDataService } from '../../services/getReverseGeo';
+import { saveState, loadState } from '../../store/localStorage';
 
 @Component({
   tag: 'lufti-reverse-geo',
@@ -64,6 +65,8 @@ export class LuftiReverseGeo {
         .then(res => {
           this.reverseGeoData = res;
           this.loading = false;
+
+          saveState("reverseGeo", { [loadState("id").stationID]: res });
         })
         .catch(err => {
           this.reverseGeoData = null;

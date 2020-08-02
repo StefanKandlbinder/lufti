@@ -18,7 +18,6 @@ export class LuftiSearch {
   @State() sensorIDInputValid = false;
   @State() loading = false;
   @State() animating = false;
-  @State() turbulence = 0;
 
   @Event({ bubbles: true, composed: true }) luftdaten: EventEmitter<Luftdaten>;
   @Event({ bubbles: true, composed: true }) luftiID: EventEmitter<string>;
@@ -97,7 +96,7 @@ export class LuftiSearch {
 
         this.luftdaten.emit(luftdatenJsonTransformer(station));
       })
-      .catch(function (error) {
+      .catch( error => {
         // handle error
         this.luftdaten
           .emit(new Luftdaten({ pm10: "0.00", pm25: "0.00" }, { longitude: "", latitude: "" }, ""));
@@ -127,7 +126,6 @@ export class LuftiSearch {
 
   render() {
     let luftiSearchFormClass = "lufti-search-form";
-    let filter = null;
 
     if (this.sensorIDInputValid) {
       luftiSearchFormClass += " lufti-search-form--raised";
@@ -138,15 +136,6 @@ export class LuftiSearch {
         aria-label="Sensor ID Form"
         class={luftiSearchFormClass}
         onSubmit={this.onGetData.bind(this)}>
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="lufti-search-svg-filter">
-          <defs>
-            <filter id="filter-glitch-1">
-              <feTurbulence type="fractalNoise" baseFrequency={this.turbulence} numOctaves="1" result="warp"></feTurbulence>
-              <feOffset dx="0" dy="0" result="warpOffset"></feOffset>
-              <feDisplacementMap yChannelSelector="G" scale="30" in="SourceGraphic" in2="warpOffset"></feDisplacementMap>
-            </filter>
-          </defs>
-        </svg>
         <div class="lufti-search-button-spacer"></div>
         <div class="lufti-search">
           <input
@@ -161,8 +150,7 @@ export class LuftiSearch {
             autoComplete="off"
             ref={el => this.luftiInput = el}
             onInput={this.onUserInput.bind(this)}
-            placeholder="your sensor id"
-            style={filter} />
+            placeholder="your sensor id" />
         </div>
         <button
           aria-label="Search Button"
@@ -170,8 +158,7 @@ export class LuftiSearch {
           class="lufti-search-button"
           disabled={!this.sensorIDInputValid || this.loading}
           type="submit"
-          onClick={Ripple.showRipple}
-          style={filter}>
+          onClick={Ripple.showRipple}>
           <svg
             class="lufti-search-icon"
             xmlns="http://www.w3.org/2000/svg"
