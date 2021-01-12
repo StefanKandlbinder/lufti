@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-The app is free hosted by Netlify and can be reached under this link: [https://lufti.netlify.com](https://lufti.netlify.com).
+The app is free hosted by [Netlify](https://www.netlify.com/) and can be reached under this link: [https://lufti.netlify.com](https://lufti.netlify.com).
 
 Just put in your Sensor ID and you will get the latest data from the server.
 
