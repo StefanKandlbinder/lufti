@@ -40,7 +40,7 @@ export class LuftiSearch {
     }
   }
 
-  componentDidUnload() {
+  disconnectedCallback() {
     document.removeEventListener("visibilitychange", this.handleVisibilityChange);
   }
 

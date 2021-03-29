@@ -10,7 +10,7 @@ import { saveState, loadState } from '../../store/localStorage';
   shadow: true
 })
 export class LuftiReverseGeo {
-  @Prop({ mutable: true, reflectToAttr: true }) location: { latitude: string, longitude: string };
+  @Prop({ mutable: true, reflect: true }) location: { latitude: string, longitude: string };
 
   @Watch('location')
   validateName(newValue: { latitude: string, longitude:string }, oldValue: { latitude: string, longitude:string }) {

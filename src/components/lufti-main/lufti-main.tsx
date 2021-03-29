@@ -62,7 +62,7 @@ export class LuftiMain {
     this.updateThemeColor();
   }
 
-  componentDidUnload() {
+  disconnectedCallback() {
     window.clearTimeout(this.promptTimeOut);
   }
 
