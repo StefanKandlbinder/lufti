@@ -1,4 +1,4 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.1.1/workbox-sw.js');
 
 self.workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 
@@ -11,7 +11,7 @@ self.workbox.routing.registerRoute(
   new workbox.strategies.CacheFirst({
     cacheName: 'images',
     plugins: [
-      new workbox.expiration.Plugin({
+      new workbox.expiration.ExpirationPlugin({
         maxEntries: 60,
         maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
       }),
@@ -24,10 +24,10 @@ self.workbox.routing.registerRoute(
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: 'api-cache',
     plugins: [
-      new workbox.cacheableResponse.Plugin({
+      new workbox.cacheableResponse.CacheableResponsePlugin({
         statuses: [0, 200]
       }),
-      new workbox.expiration.Plugin({
+      new workbox.expiration.ExpirationPlugin({
         maxEntries: 1000,
         maxAgeSeconds: 365 * 24 * 60 * 60
       })
@@ -40,10 +40,10 @@ self.workbox.routing.registerRoute(
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: 'api-cache',
     plugins: [
-      new workbox.cacheableResponse.Plugin({
+      new workbox.cacheableResponse.CacheableResponsePlugin({
         statuses: [0, 200]
       }),
-      new workbox.expiration.Plugin({
+      new workbox.expiration.ExpirationPlugin({
         maxEntries: 1000,
         maxAgeSeconds: 1 * 60 * 60
       })
@@ -56,10 +56,10 @@ self.workbox.routing.registerRoute(
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: 'api-cache',
     plugins: [
-      new workbox.cacheableResponse.Plugin({
+      new workbox.cacheableResponse.CacheableResponsePlugin({
         statuses: [0, 200]
       }),
-      new workbox.expiration.Plugin({
+      new workbox.expiration.ExpirationPlugin({
         maxEntries: 1000,
         maxAgeSeconds: 3 * 60
       })
