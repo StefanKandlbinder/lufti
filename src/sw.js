@@ -53,7 +53,7 @@ self.workbox.routing.registerRoute(
 
 self.workbox.routing.registerRoute(
   new RegExp('https://api.luftdaten.info/static/v2/.*', 'g'),
-  new workbox.strategies.StaleWhileRevalidate({
+  new workbox.strategies.CacheFirst({
     cacheName: 'api-cache',
     plugins: [
       new workbox.cacheableResponse.CacheableResponsePlugin({
@@ -61,7 +61,7 @@ self.workbox.routing.registerRoute(
       }),
       new workbox.expiration.ExpirationPlugin({
         maxEntries: 1000,
-        maxAgeSeconds: 3 * 60
+        maxAgeSeconds: 5 * 60
       })
     ]
   })
