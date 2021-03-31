@@ -49,7 +49,9 @@ export class LuftiReverseGeo {
         };
 
         this.reverseGeoToken = token;
-        this.getReverseGeo(token);
+
+        if (loadState("id") !== undefined)
+          this.getReverseGeo(token);
       })
       .catch((err) => {
         this.reverseGeoToken.token = "";
